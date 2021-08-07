@@ -660,7 +660,7 @@ committee's decisions is below.
 & & \multicolumn{2}{c}{Committee 1} \\
 & & Accept & Reject \\
 \multirow{2}{*}{Committee 2} & Accept & 22 & 22 \\
-Reject & 21 & 101 
+& Reject & 21 & 101 
 \end{tabular}
 
 4 papers rejected or withdrawn without review.
@@ -1801,8 +1801,47 @@ the conference for 50\% subjectivity.\}
 over a random conference for 50\% subjectivity.\}
 \label{gain-in-consistency} \textbackslash end\{figure\}
 
-\hypertarget{replace-me}{%
-\section{Replace me}\label{replace-me}}
+\hypertarget{where-do-rejected-papers-go}{%
+\subsection{Where do Rejected Papers
+Go?}\label{where-do-rejected-papers-go}}
+
+\begin{flushright}
+[\href{https://github.com/lawrennd/talks/edit/gh-pages/_neurips/includes/where-do-the-rejected-papers-go.md}{edit}]
+\end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ os}
+\ImportTok{import}\NormalTok{ yaml}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{with} \BuiltInTok{open}\NormalTok{(os.path.join(nipsy.review\_store, nipsy.outlet\_name\_mapping), }\StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{) }\ImportTok{as}\NormalTok{ f:}
+\NormalTok{    mapping }\OperatorTok{=}\NormalTok{ yaml.load(f, Loader}\OperatorTok{=}\NormalTok{yaml.FullLoader)}
+
+
+\NormalTok{date }\OperatorTok{=} \StringTok{"2021{-}06{-}11"}
+
+\NormalTok{citations }\OperatorTok{=}\NormalTok{ nipsy.load\_citation\_counts(date}\OperatorTok{=}\NormalTok{date)}
+\NormalTok{decisions }\OperatorTok{=}\NormalTok{ nipsy.load\_decisions()}
+\NormalTok{nipsy.augment\_decisions(decisions)}
+\NormalTok{joindf }\OperatorTok{=}\NormalTok{ nipsy.join\_decisions\_citations(decisions, citations)}
+
+\NormalTok{joindf[}\StringTok{\textquotesingle{}short\_venue\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ joindf.venue.replace(mapping)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[htb]
+\includegraphics[width=0.80\textwidth]{diagrams/neurips/where-do-neurips-papers-go.pdf}
+
+
+\caption{Sankey diagram showing the flow of NeurIPS papers through the system from submission to eventual publication.}
+\label{where-do-neurips-papers-go}
+\end{figure}
+
+\}
 
 \hypertarget{effect-of-late-reviews}{%
 \subsection{Effect of Late Reviews}\label{effect-of-late-reviews}}
