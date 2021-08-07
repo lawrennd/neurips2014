@@ -779,27 +779,24 @@ these numbers we discuss some context for placing these numbers.
 The first context we can place around the numbers is what would have
 happened at the `Random Conference' where we simply accept a quarter of
 papers at random. In this NIPS the expected numbers of accepts would
-then have been:
+then have been given as in Table \ref{table-random-committee}.
 
-Committee 1
+\begin{table}[htb]
+\caption{}
 
-Accept
 
-Reject
 
-Committee 2
+\label{\refeference}
+\end{table}
 
-Accept
+\{
 
-10.4 (1 in 16)
-
-31.1 (3 in 16)
-
-Reject
-
-31.1 (3 in 16)
-
-93.4 (9 in 16)
+\begin{tabular}[lccc]
+  & & \multicolumn{2}{c}{Committee 1} \\
+  & & Accept & Reject \\
+  \multirow{2}{*}{Committee 2} & Accept & 10.4 (1 in 16) & 31.1 (3 in 16) \\
+  & Reject & 31.1 (3 in 16) & 93.4 (9 in 16) 
+  \end{tabular}
 
 And for this set up we would expect \emph{inconsistency} of 3 in 8
 (37.5\%) \emph{accept precision} of 1 in 4 (25\%) and a \emph{reject
@@ -1175,22 +1172,22 @@ scores.
 
 It is convenient to reparameterize slightly into an overall scale
 \(\alpha_f\), and normalized variance parameters, \[
-k(i,j; k,l) = \alpha_f(\delta_{i,k}  + \delta_{j,l} \frac{\alpha_b}{\alpha_f} + \delta_{i, k}\delta_{j,l} \frac{\sigma^2}{\alpha_f})
+k(i,j; k,l) = \alpha_f\left(\delta_{i,k}  + \delta_{j,l} \frac{\alpha_b}{\alpha_f} + \delta_{i, k}\delta_{j,l} \frac{\sigma^2}{\alpha_f}\right)
 \] which we rewrite to give two ratios: offset/signal ratio,
 \(\hat{\alpha}_b\) and noise/signal \(\hat{\sigma}^2\) ratio. \[
-k(i,j; k,l) = \alpha_f(\delta_{i,k}  + \delta_{j,l} \hat{\alpha}_b + \delta_{i, k}\delta_{j,l} \hat{\sigma}^2)
+k(i,j; k,l) = \alpha_f\left(\delta_{i,k}  + \delta_{j,l} \hat{\alpha}_b + \delta_{i, k}\delta_{j,l} \hat{\sigma}^2\right)
 \] The advantage of this parameterization is it allows us to optimize
 \(\alpha_f\) directly (with a fixed point equation) and it will be very
 well determined. This leaves us with two free parameters, that we can
 explore on the grid. It is in these parameters that we expect the
 remaining underdetermindness of the model. We expect \(\alpha_f\) to be
 well determined because the negative log likelihood is now \[
-\frac{|\mathbf{y}|}{2}\log\alpha_f + \frac{1}{2}\log  \left|\hat{\mathbf{K}}\right| + \frac{1}{2\alpha_f}\mathbf{y}^\top \hat{\mathbf{K}}^{-1} \mathbf{y}
+\frac{|\mathbf{y}|}{2}\log\alpha_f + \frac{1}{2}\log  \left|\hat{\mathbf{K}}\right| + \frac{1}{2\alpha_f}\mathbf{y}^\top \hat{\mathbf{K}}^{-1} \mathbf{y},
 \] where \(|\mathbf{y}|\) is the length of \(\mathbf{y}\) (i.e.~the
 number of reviews) and \(\hat{\mathbf{K}}=\alpha_f^{-1}\mathbf{K}\) is
 the scale normalised covariance. This negative log likelihood is easily
 minimized to recover \[
-\alpha_f = \frac{1}{|\mathbf{y}|} \mathbf{y}^\top \hat{\mathbf{K}}^{-1} \mathbf{y}
+\alpha_f = \frac{1}{|\mathbf{y}|} \mathbf{y}^\top \hat{\mathbf{K}}^{-1} \mathbf{y}.
 \] A Bayesian analysis of this parameter is possible with gamma priors,
 but it would merely shows that this parameter is extremely well
 determined (the degrees of freedom parameter of the associated
@@ -1484,8 +1481,9 @@ the teleconferences between program chairs and area chairs.
 \label{probability-of-accept}
 \end{figure}
 
-\hypertarget{some-sanity-histograms}{%
-\subsection{Some Sanity Histograms}\label{some-sanity-histograms}}
+\hypertarget{some-sanity-checking-plots}{%
+\subsection{Some Sanity Checking
+Plots}\label{some-sanity-checking-plots}}
 
 \begin{flushright}
 [\href{https://github.com/lawrennd/talks/edit/gh-pages/_neurips/includes/calibration-sanity-checks.md}{edit}]
@@ -1596,7 +1594,7 @@ raw score vs log odds of accept.
 \includegraphics[width=0.70\textwidth]{diagrams/neurips/raw-score-vs-log-odds.pdf}
 
 
-\caption{Histogram of the raw paper score against the log probability of paper acceptance, as estimated by Monte Carlo simulation.}
+\caption{Scatter plot of the raw paper score against the log probability of paper acceptance, as estimated by Monte Carlo simulation.}
 \label{raw-score-vs-log-odds}
 \end{figure}
 
