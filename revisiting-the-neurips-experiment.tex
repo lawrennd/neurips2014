@@ -46,36 +46,121 @@
 ]
 
 \begin{abstract}
-    The NeurIPS experiment showed that the conference reviewing process is inconsistent. The experiment showed that in an independent rerunning of the conference half of the presented papers in the program would be different. 
-    
-    This paper reviews the NeurIPS experiment and explores what has happened to the body of papers submitted to the 2014 NeurIPS conference in the seven years that have elapsed.
-
-    Paper decisions showed an inconsistency of TK\% between the two committees, but now we are able to see if the decisions of these committees resulted in impactful papers.
-    
+    In this paper we revisit the NeurIPS experiment that examined
+inconsistency in conference peer review. We determine that the
+underlying cause of inconsistency in the reviews was subjectivity in the
+reviewers' quality scores: after score calibration 50\% of the variation
+in reviewer scores was subjective in origin. Further, with seven years
+passing since the experiment we find that for \emph{accepted} papers,
+there is no correlation between quality scores and impact of the paper
+as measured as a function of citation count. We trace the fate of
+rejected papers, recovering where these papers were eventually
+published. For these papers we find a correlation between quality scores
+and impact. We conclude that the reviewing process for the 2014
+conference was good for identifying poor papers, but poor for
+identifying good papers. We give some suggestions for improving the
+reviewing process but also warn against removing the subjective element.
+Finally, we suggest that the real conclusion of the experiment is that
+the community should place less onus on the notion of `top tier
+conference publications' when assessing the quality of individual
+researchers.
 \end{abstract}
 
-\section{Introduction}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
+In 2014 the Program Chairs of the NeurIPS conference, Corinna Cortes and
+Neil Lawrence, implemented the NeurIPS experiment. The experiment was
+designed to assess the consistency of the conference peer reviewing
+process. From the conference 10\% of the papers were randomly chosen to
+be reviewed by two independent program committees. The objective was to
+determine if decision making was consistent across these two committees.
+The results showed that the decisions between the two committees were
+74\% consistent as compared with a random committee that would have been
+62.5\% consistent. While the review process can be shown to be
+significantly better than a random committee (see Appendix TK in the
+supplementary material for an analysis), the reaction from some in the
+community was on of surprise (see Appendix TK in the supplementary
+material for an overview of the reaction). In particular the two
+committees were only around 50\% consistent about which papers were
+selected to appear at the conference. Researchers realized, that if the
+review process had been independently rerun, half the papers published
+at the conference would have been different.
 
-\section{The NeurIPS Experiment}
+We explore these numbers further in three ways. First, we use the fact
+that reviewer scores underwent a calibration process during the
+conference. This process was focused on eliminating bias in reviewer
+scale interpretation, but it also quantifies the subjectivity of
+individual reviewer scores. Through a simulation study we demonstrate
+that this subjectivity is the at the heart of the inconsistency. Second,
+we explored whether these scores correlated with paper citation scores.
+Taking citation scores as a proxy for paper impact,\footnote{There are
+  problems with using citation scores as a way of assessing impact, see
+  e.g. @Neylon-article09 for a discussion, but they have the advantage
+  of being an objective, community driven measure and with seven years
+  having passed since publication, the papers have had a chance to
+  establish themselves.} We collected citation counts for each published
+paper from Semantic Scholar,\footnote{\url{https://www.semanticscholar.org/}}
+but found no correlation between paper quality scores and the paper's
+eventual impact. Finally, we analyzed rejected papers from the
+conference. We searched Semantic Scholar for papers with similar titles
+by the same lead author in the literature allowing us to track the final
+outlet for 680 papers that were rejected by the 2014 NeurIPS conference,
+as well as their associated citation counts. For these papers we did
+find correlation between quality scores and citation counts.
 
-In 2014 the conference was chaired by Corinna Cortes and Neil Lawrence who decided to run an experiment to check the consistency of the reviewing process. 
+From these analyses we conclude that inconsistency in the conference
+reviewing process is a consequence of the subjectivity in reviewer
+assessments. And that in the high scoring range, reviewer quality scores
+are not a good proxy for citation impact. However, reviewers seem better
+at identifying weaker papers: low scoring papers were (on average) low
+impact. Before discussing each of these areas, we first give a brief
+reminder of the NeurIPS experiment.
 
-\section{The Conference}
+\hypertarget{review-of-the-conference-and-the-experiment}{%
+\section{Review of the Conference and the
+Experiment}\label{review-of-the-conference-and-the-experiment}}
 
-\section{Review Process}
+The NeurIPS conference is one of the premier conferences in machine
+learning. In 2014 the conference was undergoing a period of rapid
+growth. The conference was held in Montreal with 2,581 attendees at the
+conference and associated workshops and tutorials. The papers presented
+there have proven to be highly influential including breakthrough papers
+in unsupervised learning with neural networks as well as papers on
+sequence-to-sequence learning for machine translation. These papers have
+gone on to have widespread societal impact.
 
-\section{Results of the Original Experiment}
+At NeurIPS 2014, each paper was assigned to an Area Chair and at least
+three reviewers. Final decisions about papers were made by video
+conference between area chairs and the Program Chairs. For more details
+on the reviewing process and the timelines involved see Appendix TK in
+the supplementary material.
 
-\section{Simulation of the Experiment}
+The Program Chairs of the 2014 conference decided to test the
+consistency of the peer review process through a randomized experiment.
+From the 1,678 submissions they chose 170 papers to undergo review by
+two separate committees. Each committee was formed by separating the
+reviewing body randomly into two groups, while the Area Chairs were
+split manually to ensure proper coverage of expertise in the two bodies.
+Each selected paper went through the review process independently.
 
-\section{Late Reviewers}
+The results of this process are summarized in Table \ref{table-neurips-experiment-results}, where the
+\begin{table}[htb]
+\caption{Table showing the results from the two committees as a confusion matrix. Four papers were rejected or withdrawn without review.}
+\label{table-neurips-experiment-results}
 
-\section{Long Term Impact of Papers}
-\subsection{Second Level Heading}
+\begin{tabular}{lc|c|c|}
+& & \multicolumn{2}{c}{Committee 1} \\
+& & Accept & Reject \\
+\multirow{2}{*}{Committee 2} & Accept & 22 & 22 \hline \\
+& Reject & 21 & 101 
+\end{tabular}
+\end{table}
 
+\hypertarget{reviewer-calibration-and-scoring-inconsistency}{%
+\section{Reviewer Calibration and Scoring Inconsistency}\label{reviewer-calibration-and-scoring-inconsistency}}
 
-\subsubsection{Third Level Heading}
+In this section we look at c
 
 
 \subsubsection*{Acknowledgements}
@@ -83,4 +168,11 @@ In 2014 the conference was chaired by Corinna Cortes and Neil Lawrence who decid
 
 \bibliography{revisiting-the-neurips-experiment}
 
+\onecolumn
+\aistatstitle{Revisiting the NeurIPS Experiment: \\
+Supplementary Materials}
+
+\include{the-neurips-experiment.include}
+
+\vfill
 \end{document}
