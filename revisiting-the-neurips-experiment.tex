@@ -26,42 +26,6 @@
 \usepackage{multirow}
 \usepackage{textcomp}
 \usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\newenvironment{Shaded}{}{}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 
 
 
@@ -126,9 +90,9 @@ determine if decision making was consistent across these two committees.
 The results showed that the decisions between the two committees were
 74\% consistent as compared with a random committee that would have been
 62.5\% consistent. While the review process can be shown to be
-significantly better than a random committee (see Appendix TK in the
+significantly better than a random committee (see Appendix \ref{a-random-committee-25} in the
 supplementary material for an analysis), the reaction from some in the
-community was on of surprise (see Appendix TK in the supplementary
+community was on of surprise (see Appendix \ref{reaction-after-experiment} in the supplementary
 material for an overview of the reaction). In particular the two
 committees were only around 50\% consistent about which papers were
 selected to appear at the conference. Researchers realized, that if the
@@ -166,7 +130,7 @@ impact. Before discussing each of these areas, we first give a brief
 reminder of the NeurIPS experiment.
 
 \hypertarget{review-of-the-conference-and-the-experiment}{%
-\section{Review of the Conference and the
+\subsection{Review of the Conference and the
 Experiment}\label{review-of-the-conference-and-the-experiment}}
 
 The NeurIPS conference is one of the premier conferences in machine
@@ -181,7 +145,7 @@ gone on to have widespread societal impact.
 At NeurIPS 2014, each paper was assigned to an Area Chair and at least
 three reviewers. Final decisions about papers were made by video
 conference between area chairs and the Program Chairs. For more details
-on the reviewing process and the timelines involved see Appendix TK in
+on the reviewing process and the timelines involved see Appendix \ref{timeline-for-neurips} in
 the supplementary material.
 
 The Program Chairs of the 2014 conference decided to test the
@@ -199,17 +163,27 @@ The results of this process are summarized in Table \ref{table-neurips-experimen
 
 \begin{tabular}{lc|c|c|}
 & & \multicolumn{2}{c}{Committee 1} \\
-& & Accept & Reject \\ \hlnie
+& & Accept & Reject \\ \hline
 \multirow{2}{*}{Committee 2} & Accept & 22 & 22 \\
 & Reject & 21 & 101 
 \end{tabular}
 \end{table}
 
+\section{Results}
+
 \hypertarget{reviewer-calibration-and-scoring-inconsistency}{%
-\section{Reviewer Calibration and Scoring Inconsistency}\label{reviewer-calibration-and-scoring-inconsistency}}
+\subsection{Reviewer Calibration and Scoring Inconsistency}\label{reviewer-calibration-and-scoring-inconsistency}}
 
 In this section we look at c
 
+
+\subsection{Impact of Accepted Papers}
+
+https://twitter.com/lawrennd/status/1406380063596089346?s=20
+
+\subsection{Fate of Rejected Papers}
+
+\section{Conclusions}
 
 \subsubsection*{Acknowledgements}
 
@@ -219,7 +193,7 @@ In this section we look at c
 \onecolumn
 \aistatstitle{Revisiting the NeurIPS Experiment: \\
 Supplementary Materials}
-
+\appendix
 \include{the-neurips-experiment.include}
 
 \vfill
