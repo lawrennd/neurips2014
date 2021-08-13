@@ -26,6 +26,7 @@
 \usepackage{multirow}
 \usepackage{textcomp}
 \usepackage{fancyvrb}
+\usepackage{todo}
 
 
 
@@ -220,7 +221,7 @@ Under the model assumptions we see that calibrated review scores are made up of 
 
 To check whether this subjective scoring also explains the inconsistency in decisions between the two committees, we set up a simple simulation study. For our simulations, we assumed that each paper was scored according to the model we've given above and we estimated the accept consistency through averaging across 100,000 samples. In Figure \ref{figure-consistency-vs-accept-rate} we show the estimates of the accept consistency as a function of conference accept rate.
 
-\todo{Neil: this simulation is 50/50, but given that there are four reviewer scores, that are averaged, sholuldn't the simulation be $f__i + \frac{1}{4}\epsilon_{i,j}$?
+\todo{Neil: this simulation is 50/50, but given that there are four reviewer scores, that are averaged, sholuldn't the simulation be $f__i + \frac{1}{4}\epsilon_{i,j}$?}
 
 \begin{figure}[htb]
 \includegraphics[width=0.50\textwidth]{diagrams/neurips/consistency-vs-accept-rate.pdf}
@@ -236,7 +237,7 @@ From these results, we can conclude that the source of inconsistency in the conf
 
 It seems self-evident that we might want greater consistency between review committees. After all, if decisions are inconsistent, then how can they be `correct'? While it's true that inconsistency implies incorrectness, the converse is not true. Consistency does not imply correctness. For example, if both committees were to accept all the papers that included the most references, then their decisions would be consistent, but not correct. Indeed, we could argue the converse. Given that we know that incorrect decisions are being made, then do we prefer those errors to be consistent or inconsistent? In this case, we might argue that variation in decision making is a good thing: it prevents particular types of paper being descriminated against.
 
-So, the fundamental question would seem to be: how good is the committee at selecting the right papers? Unfortunately we don't have a ground truth assessment of what the right papers are. In the absence of this, in the next section, we explore what happened to accepted papers in terms of their citation impact. 
+So, a follow up question would seem to be: how good is the committee at selecting the `right' papers? Unfortunately we don't have a ground truth assessment of what the right papers are. In the absence of this, in the next section, we explore what happened to accepted papers in terms of their citation impact. 
 
 \subsection{Impact of Accepted Papers}
 
