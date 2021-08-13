@@ -175,7 +175,7 @@ The results of this process are summarized in Table \ref{table-neurips-experimen
 Cortes and Lawrence also looked at the correlation between the review scores across the two independent committees, a scatter plot of the scores from the committees is shown in Figure \ref{figure-calibrated-quality-correlation}, the Pearson correlation was computed as $\rho=0.55$. For details on the calibration process see Section \ref{reviewer-calibration-and-scoring-inconsistency}.
 
 \begin{figure}[htb]
-\includegraphics[width=0.60\textwidth]{diagrams/neurips/calibrated-quality-correlation.pdf}
+\includegraphics[width=0.9\columnwidth]{diagrams/neurips/calibrated-quality-correlation.pdf}
 
 \caption{Correlation between calibrated reviewer scores across the two independent committees. Standard error on the correlation for $n=166$ papers and Gaussian assumptions is $s_r = 0.065$.}
 \label{figure-calibrated-quality-correlation}
@@ -294,7 +294,7 @@ given the relatively small number of accepted papers in the
 experiment, it falls well within binomial error bars.
 
 \begin{figure}[htb]
-\includegraphics[width=0.50\textwidth]{diagrams/neurips/accept-precision-vs-accept-rate.pdf}
+\includegraphics[width=0.90\columnwidth]{diagrams/neurips/accept-precision-vs-accept-rate.pdf}
 
 \caption{Plot of the accept rate versus the accept consistency of
 the conference for 50\% subjectivity in a simulation of the conference with different numbers of reviewers per paper.}
@@ -321,7 +321,7 @@ Our first measurement was to compute the correlation between calibrated quality 
 
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=0.70\textwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
+    \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
   \end{center}
   \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average calibrated quality score for accepted NeurIPS 2014 papers. To prevent reidentification of individual papers quality scores and citation count, each point is corrupted by differentially private noise in the plot (correlation is computed before adding differentially private noise). We have also purposely left off the scale, as the main point in including the scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$.}
   \label{figure-citations-vs-average-calibrated-quality-accept}
