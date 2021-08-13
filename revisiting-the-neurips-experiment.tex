@@ -181,21 +181,56 @@ Cortes and Lawrence also looked at the correlation between the review scores acr
 \label{figure-calibrated-quality-correlation}
 \end{figure}
 
+During the experiment, the timing of submitted reviews was also tracked. There is evidence that reviews received after the submission deadline, were shorter, typically gave higher scores but with lower confidence (see Appendix \label{effect-of-late-reviews}), but there was insufficient power in the experiment to determine whether this had a significant effect on the correlation across the program committees. 
+
 \section{Results}
 
-Having given an overview of the background to the experiment, we now follow up with our three separate treatments of the results. First we will explore the relationship between the conference calibration and the experimental outcome.
+Having given an overview of the experiment, we now follow up with our three separate treatments of the results. First we will explore the relationship between the conference calibration and the experimental outcome.
 
 \hypertarget{reviewer-calibration-and-scoring-inconsistency}{%
 \subsection{Reviewer Calibration and Scoring Inconsistency}\label{reviewer-calibration-and-scoring-inconsistency}}
 
-NeurIPS papers are evaluated by quality scores on a 10 point Likert scale (see Appendix \ref{paper-scoring-and-reviewer-instructions}). A classical challenge with such scales is that they may be interpreted differently by different reviewers. Since the TK conference, NeurIPS chairs have often calibrated reviewer scores using scripts of their own devising. For example, John Platt who chaired the conference in 2006, used a regularized least squares model, this model is written up in \cite{Platt-calibration12}. The year before us, Zoubin Ghaharamani and Max Welling used a Bayesian extension of this model \cite{Ge-bayesian15}. Corinna Cortes and Neil Lawrence also used a Bayesian variant of the Platt-Burges model, but one that was formulated as a Gaussian process. We give the details of this approach in the supplementary material (Appendix \ref{reviewer-calibration}), but in essence the core of the model is as follows. Each review score is decomposed into three parts,
+NeurIPS papers are evaluated by quality scores on a 10 point Likert
+scale (see Appendix \ref{paper-scoring-and-reviewer-instructions}). A
+classical challenge with such scales is that they may be interpreted
+differently by different reviewers. Since the TK conference, NeurIPS
+chairs have often calibrated reviewer scores using scripts of their
+own devising. For example, John Platt who chaired the conference in
+2006, used a regularized least squares model, this model is written up
+in \cite{Platt-calibration12}. The year before us, Zoubin Ghaharamani
+and Max Welling used a Bayesian extension of this model
+\cite{Ge-bayesian15}. Corinna Cortes and Neil Lawrence also used a
+Bayesian variant of the Platt-Burges model, but one that was
+formulated as a Gaussian process. We give the details of this approach
+in the supplementary material (Appendix \ref{reviewer-calibration}),
+but in essence the core of the model is as follows. Each review score
+is decomposed into three parts,
 $$
 y_{i,j} = f_i + b_j + \epsilon_{i, j},
 $$
-where $y_{i,j}$ is the score from the $j$th reviewer for the $i$th paper. The score is then decomposed into $f_i$ which is the \emph{objective} quality of the $i$th paper, i.e. it represents the portion of the score that is common to all the reviewers. The term $b_j$ is specific to the $j$th reviewer and it represents an offset or bias associated with the $j$th reviewer. The idea being that different reviewers interpret the scale differently. Finally $\epsilon_{i,j}$ is a \emph{subjective} estimate of the quality of paper $i$ according to reviewer $j$. It reflects how a specific reviewer's
-opinion differs from other reviewers. These differences in opinion may be arising due to differing expertise or perspective).
+where $y_{i,j}$ is the score from the $j$th reviewer for the $i$th
+paper. The score is then decomposed into $f_i$ which is the
+\emph{objective} quality of the $i$th paper, i.e. it represents the
+portion of the score that is common to all the reviewers. The term
+$b_j$ is specific to the $j$th reviewer and it represents an offset or
+bias associated with the $j$th reviewer. The idea being that different
+reviewers interpret the scale differently. Finally $\epsilon_{i,j}$ is
+a \emph{subjective} estimate of the quality of paper $i$ according to
+reviewer $j$. It reflects how a specific reviewer's opinion differs
+from other reviewers. These differences in opinion may be arising due
+to differing expertise or perspective).
 
-The model contains $n$ + $m$ + $n\hat{k}$ parameters where $n=1,678$ is the number of papers, $m=1,474$ is the number of reviewers and $\hat{k}$ is the average number of reviewers per paper. Given that the data consists of $n\hat{k}$ reviewing scores, the model is over-parameterised. The original Platt-Burges model used regularization to deal with this parameterisation, both \cite{Ge-bayesian15} and Cortes and Lawrence deal with extra parameters by allocating them a probability distribution. In the Cortes and Lawrence case a Gaussian probability results in a latent variable model that has a marginal likelihood which is jointly Gaussian, so we have
+The model contains $n$ + $m$ + $n\hat{k}$ parameters where $n=1,678$
+is the number of papers, $m=1,474$ is the number of reviewers and
+$\hat{k}$ is the average number of reviewers per paper. Given that the
+data consists of $n\hat{k}$ reviewing scores, the model is
+over-parameterised. The original Platt-Burges model used
+regularization to deal with this parameterisation, both
+\cite{Ge-bayesian15} and Cortes and Lawrence deal with extra
+parameters by allocating them a probability distribution. In the
+Cortes and Lawrence case a Gaussian probability results in a latent
+variable model that has a marginal likelihood which is jointly
+Gaussian, so we have
 $$
 \mathbf{y} \sim N(\mu \mathbf{1}, \mathbf{K}),
 $$
@@ -204,9 +239,19 @@ the vector of ones and the elements of the covariance function are given
 by
 $$
 k(i,j; k,l) = \delta_{i,k} \alpha_f + \delta_{j,l} \alpha_b + \delta_{i, k}\delta_{j,l} \sigma^2,
-$$
-where $i$ and $j$ are the index of one paper and reviewer and
-$k$ and $l$ are the index of a potentially different paper and reviewer. Three of the parameters of this distribution, $\alpha_f$, $\alpha_b$, $\sigma^2$ represent the explained variance of the the score coming from objective quality rating, reviewer offset and subjective quality rating respectively. As described in the appendix, the calibrated reviewer score is estimated as the conditional density of $f_i + \epsilon_{i,j}$. Note that the calibrated reviewer score \emph{includes} the reviewer's \emph{subjective} opinion about the paper. See Appendix \ref{reviewer-calibration-model} for more details on the model as well as code for fitting the model in GPy \cite{Gpy-20012}. The parameters of the fitted model are given in Table \ref{fitted-calibration-parameters}.
+$$ where $i$ and $j$ are the index of one paper and reviewer and $k$
+and $l$ are the index of a potentially different paper and
+reviewer. Three of the parameters of this distribution, $\alpha_f$,
+$\alpha_b$, $\sigma^2$ represent the explained variance of the the
+score coming from objective quality rating, reviewer offset and
+subjective quality rating respectively. As described in the appendix,
+the calibrated reviewer score is estimated as the conditional density
+of $f_i + \epsilon_{i,j}$. Note that the calibrated reviewer score
+\emph{includes} the reviewer's \emph{subjective} opinion about the
+paper. See Appendix \ref{reviewer-calibration-model} for more details
+on the model as well as code for fitting the model in GPy
+\cite{Gpy-20012}. The parameters of the fitted model are given in
+Table \ref{fitted-calibration-parameters}.
 
 \begin{table}[htb]
   \label{table-fitted-calibration-parameters}
@@ -217,9 +262,32 @@ $k$ and $l$ are the index of a potentially different paper and reviewer. Three o
   \end{tabular}
 \end{table}  
 
-Under the model assumptions we see that calibrated review scores are made up of subjective and objective opinion in roughly equal proportions. In other words, 50\% of a typical reviewer's score is coming from opinion that is particular to that reviewer and \emph{not} shared with the other reviewers. This figure may seem large, but in retrospect it is perhaps not surprising. Papers are judged by subjective criteria such as novelty as well as more objective criteria such as rigour. The subjectivity of reviewer scores also seems a sensible starting point to unpick the inconsistency between the two committees described by the NeurIPS experiment. The result is consistent with the correlation coefficient we computed between the two independent committees, $\rho = 0.55 \pm 0.065$. Our calibration model is suggesting that the overall correlation between two committees would be given by $0.502 = 1.28/(1.28+1.27)$.
+Under the model assumptions we see that calibrated review scores are
+made up of subjective and objective opinion in roughly equal
+proportions. In other words, 50\% of a typical reviewer's score is
+coming from opinion that is particular to that reviewer and \emph{not}
+shared with the other reviewers. This figure may seem large, but in
+retrospect it is perhaps not surprising. Papers are judged by
+subjective criteria such as novelty as well as more objective criteria
+such as rigour. The subjectivity of reviewer scores also seems a
+sensible starting point to unpick the inconsistency between the two
+committees described by the NeurIPS experiment. 
 
-To check whether this subjective scoring also explains the inconsistency in decisions between the two committees, we set up a simple simulation study. For our simulations, we assumed that each paper was scored according to the model we've given above and we estimated the accept consistency through averaging across 100,000 samples. In Figure \ref{figure-consistency-vs-accept-rate} we show the estimates of the accept consistency as a function of conference accept rate.
+
+The result is
+consistent with the correlation coefficient we computed between the
+two independent committees, $\rho = 0.55 \pm 0.065$. Our calibration
+model is suggesting that the overall correlation between two
+committees would be given by $0.502 = 1.28/(1.28+1.27)$.
+
+To check whether this subjective scoring also explains the
+inconsistency in decisions between the two committees, we set up a
+simple simulation study. For our simulations, we assumed that each
+paper was scored according to the model we've given above and we
+estimated the accept consistency through averaging across 100,000
+samples. In Figure \ref{figure-consistency-vs-accept-rate} we show the
+estimates of the accept consistency as a function of conference accept
+rate.
 
 \todo{Neil: this simulation is 50/50, but given that there are four reviewer scores, that are averaged, sholuldn't the simulation be $f__i + \frac{1}{4}\epsilon_{i,j}$?}
 
@@ -240,6 +308,16 @@ It seems self-evident that we might want greater consistency between review comm
 So, a follow up question would seem to be: how good is the committee at selecting the `right' papers? Unfortunately we don't have a ground truth assessment of what the right papers are. In the absence of this, in the next section, we explore what happened to accepted papers in terms of their citation impact. 
 
 \subsection{Impact of Accepted Papers}
+
+Seven years have now passed since the NeurIPS experiment, and the papers published at the conference have had time to establish themselves. In this section we explore how they faired in terms of \emph{citation impact}.
+
+To determine the citation impact of papers, we searched for each accepted paper from the conference on Semantic Scholar. The Semantic Scholar ID of the papers was recorded and we made use of the Semantic Scholar API to retrieve the number of citing papers. The citation scores were transformed into the citation impact using
+$$
+\text{citation impact} = \log (1 + \text{number of citations})
+$$
+which by visual inspection rendered citation scores roughly Gaussian distributed, enabling us to make use of Pearson's rho for correlation measurement.
+
+Our first measurement was to compute the correlation between calibrated quality score and the citation impact. We found \emph{no significant correlation} between those scores. The correlation was computed as $
 
 https://twitter.com/lawrennd/status/1406380063596089346?s=20
 
