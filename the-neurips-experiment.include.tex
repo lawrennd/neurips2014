@@ -1198,7 +1198,8 @@ b_j \sim N(0, \alpha_b),
 and \(\alpha_b\). Combined together these three assumptions imply that
 \[
 \mathbf{y} \sim N(\mu \mathbf{1}, \mathbf{K}),
-\] where \(\mathbf{y}\) is a vector of stacked scores \(\mathbf{1}\) is
+\]
+where \(\mathbf{y}\) is a vector of stacked scores \(\mathbf{1}\) is
 the vector of ones and the elements of the covariance function are given
 by \[
 k(i,j; k,l) = \delta_{i,k} \alpha_f + \delta_{j,l} \alpha_b + \delta_{i, k}\delta_{j,l} \sigma^2,
@@ -1233,7 +1234,7 @@ which will be around \(|\mathbf{y}| \approx 6,000\) in our case.
 
 So, we propose to proceed as follows. Set the mean from the reviews
 (\(\mu\)) and then choose a two-dimensional grid of parameters for
-reviewer offset and diversity. For each parameter choice, optimize to
+reviewero ffset and diversity. For each parameter choice, optimize to
 find \(\alpha_f\) and then evaluate the liklihood. Worst case this will
 require us inverting \(\hat{\mathbf{K}}\), but if the reviewer paper
 groups are disconnected, it can be done a lot quicker. Next stage is to
