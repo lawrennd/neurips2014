@@ -303,23 +303,31 @@ the conference for 50\% subjectivity in a simulation of the conference with diff
 
 If we accept the model used for the calibration and the simulation is capturing the underlying phenomenon, then the source of inconsistency in the conference can be traced back to subjectivity in the reviews. Further the model shows that the actual accept consistency of the conference may have been higher, at around 68\%. This is consistent with the upper end of an analysis of the experiment performed by Cortes and Lawrence at the time which suggested that the consistent accept rate was between 38\% and 64\% (see Appendix \ref{uncertainty-accept-rate}). Note this mainly highlights the unreliability of the consistent accepts summary measure. Power for this measure is reduced because the number of samples used in its calculation is given by accept rate $\times$ experiment sample size.
 
-Regardless, it seems self-evident that we might want greater consistency between review committees. After all, if decisions are inconsistent, then how can they be `correct'? While it's true that inconsistency implies incorrectness, the converse is not true. Consistency does not imply correctness. For example, if both committees were to accept all the papers that included the most references, then their decisions would be consistent, but not correct. Indeed, we could argue the converse. Given that we know that incorrect decisions are being made, then do we prefer those errors to be consistent or inconsistent? In this case, we might argue that variation in decision making is a good thing: it prevents particular types of paper being descriminated against.
+Regardless, it seems self-evident that we might want greater consistency between review committees. After all, if decisions are inconsistent, then how can they be `correct'? While it's true that inconsistency implies incorrectness, the converse is not true. Consistency does not imply correctness. For example, if both committees were to choose papers to accept based on how many references they include, then their decisions would be consistent, but not correct. Given that we know that \emph{incorrect} decisions will be made, then we can also phrase the problem in another way. Given that there are errors, do we prefer those errors to be consistently made? In the presence of errors, we might argue that variation in decision making is a good thing: it prevents particular types of paper being consistently descriminated against.
 
-So, a follow up question would seem to be: how good is the committee at selecting the `right' papers? Unfortunately we don't have a ground truth assessment of what the right papers are. In the absence of this, in the next section, we explore what happened to accepted papers in terms of their citation impact. 
+We've established that there is inconsistency in the peer review process, and we have associated that inconsistency with subjective scoring by reviewers. But we have argued that consistency is only a good thing if the decisions can also be shown to be correct. So, a follow up question would seem to be: how good is the committee at selecting the `right' papers? Unfortunately we don't have a ground truth assessment of what the right papers are. But, because time has passed between the conference and today, we can explore what happened to accepted papers in terms of their citation impact. 
 
 \subsection{Impact of Accepted Papers}
 
-Seven years have now passed since the NeurIPS experiment, and the papers published at the conference have had time to establish themselves. In this section we explore how they faired in terms of \emph{citation impact}.
+Seven years have passed since the NeurIPS experiment and the papers published at the conference have had time to establish themselves. In this section we explore how they fared in terms of their \emph{citation impact}.
 
 To determine the citation impact of papers, we searched for each accepted paper from the conference on Semantic Scholar. The Semantic Scholar ID of the papers was recorded and we made use of the Semantic Scholar API to retrieve the number of citing papers. The citation scores were transformed into the citation impact using
 $$
-\text{citation impact} = \log (1 + \text{number of citations})
+\text{citation impact} = \log_{10} (1 + \text{number of citations})
 $$
 which by visual inspection rendered citation scores roughly Gaussian distributed, enabling us to make use of Pearson's rho for correlation measurement.
 
-Our first measurement was to compute the correlation between calibrated quality score and the citation impact. We found \emph{no significant correlation} between those scores. The correlation was computed as $
+Our first measurement was to compute the correlation between calibrated quality score and the citation impact. We found \emph{no significant correlation} between those scores. In Figure \ref{figure-citations-vs-average-calibrated-quality-accept} we show a scatter plot of paper calibrated quality scores against the citation impact. In the scatter plot we added differential privacy noise to the values shown in the plot to obsfucate individual paper identities. Correlation coefficient is computed before adding the differential privacy noice (see Appendix \ref{correlation-of-quality-scores-and-citation}).
 
-https://twitter.com/lawrennd/status/1406380063596089346?s=20
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.70\textwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
+  \end{center}
+  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average calibrated quality score for accepted NeurIPS 2014 papers. To prevent reidentification of individual papers quality scores and citation count, each point is corrupted by differentially private noise in the plot (correlation is computed before adding differentially private noise). We have also purposely left off the scale, as the main point in including the scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$.}
+  \label{figure-citations-vs-average-calibrated-quality-accept}
+\end{figure}
+
+The calibrated quality score is not specifically designed to measure impact. However, it may be surprising to some readers that there is no correlation between the score and citation impact for the group of accepted papers. The implication that the quality score, which is the main criterion on which accept/reject decisions are being made, may strike us as odd. 
 
 \subsection{Fate of Rejected Papers}
 
