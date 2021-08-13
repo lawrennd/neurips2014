@@ -176,7 +176,7 @@ Cortes and Lawrence also looked at the correlation between the review scores acr
 \begin{figure}[htb]
 \includegraphics[width=0.60\textwidth]{diagrams/neurips/calibrated-quality-correlation.pdf}
 
-\caption{Correlation between calibrated reviewer scores across the two independent committees.}
+\caption{Correlation between calibrated reviewer scores across the two independent committees. Standard error on the correlation for $n=166$ papers and Gaussian assumptions is $s_r = 0.065$.}
 \label{figure-calibrated-quality-correlation}
 \end{figure}
 
@@ -216,9 +216,27 @@ $k$ and $l$ are the index of a potentially different paper and reviewer. Three o
   \end{tabular}
 \end{table}  
 
-Under the model assumptions we see that calibrated review scores are made up of subjective and objective opinion in roughly equal proportions. In other words, 50\% of a typical reviewer's score is coming from opinion that is particular to that reviewer and \emph{not} shared with the other reviewers. This figure may seem large, but in retrospect it is perhaps not surprising. Papers are judged by subjective criteria such as novelty as well as more objective criteria such as rigour. The subjectivity of reviewer scores also seems a sensible starting point to unpick the inconsistency between the two committees described by the NeurIPS experiment.
+Under the model assumptions we see that calibrated review scores are made up of subjective and objective opinion in roughly equal proportions. In other words, 50\% of a typical reviewer's score is coming from opinion that is particular to that reviewer and \emph{not} shared with the other reviewers. This figure may seem large, but in retrospect it is perhaps not surprising. Papers are judged by subjective criteria such as novelty as well as more objective criteria such as rigour. The subjectivity of reviewer scores also seems a sensible starting point to unpick the inconsistency between the two committees described by the NeurIPS experiment. The result is consistent with the correlation coefficient we computed between the two independent committees, $\rho = 0.55 \pm 0.065$. Our calibration model is suggesting that the overall correlation between two committees would be given by $0.502 = 1.28/(1.28+1.27)$.
 
-With this in mind, we 
+To check whether this subjective scoring also explains the inconsistency in decisions between the two committees, we set up a simple simulation study. For our simulations, we assumed that each paper was scored according to the model we've given above and we estimated the accept consistency through averaging across 100,000 samples. In Figure \ref{figure-consistency-vs-accept-rate} we show the estimates of the accept consistency as a function of conference accept rate.
+
+\todo{Neil: this simulation is 50/50, but given that there are four reviewer scores, that are averaged, sholuldn't the simulation be $f__i + \frac{1}{4}\epsilon_{i,j}$?
+
+\begin{figure}[htb]
+\includegraphics[width=0.50\textwidth]{diagrams/neurips/consistency-vs-accept-rate.pdf}
+
+\caption{Plot of the accept rate versus the consistency of
+the conference for 50\% subjectivity in a simulation of the conference.}
+\label{figure-consistency-vs-accept-rate}
+\end{figure}
+
+The estimated accept consistency for a 25\% accept rate is TK, which is consistent with the accept consistency we observed in the experiment.
+
+From these results, we can conclude that the source of inconsistency in the conference can be traced back to subjectivity in the reviews. If we accept our model of review scoring, we can also estimate what this inconsistency is likely to be directly from the model, rather than running the NeurIPS experiment.
+
+It seems self-evident that we might want greater consistency between review committees. After all, if decisions are inconsistent, then how can they be `correct'? While it's true that inconsistency implies incorrectness, the converse is not true. Consistency does not imply correctness. For example, if both committees were to accept all the papers that included the most references, then their decisions would be consistent, but not correct. Indeed, we could argue the converse. Given that we know that incorrect decisions are being made, then do we prefer those errors to be consistent or inconsistent? In this case, we might argue that variation in decision making is a good thing: it prevents particular types of paper being descriminated against.
+
+So, the fundamental question would seem to be: how good is the committee at selecting the right papers? Unfortunately we don't have a ground truth assessment of what the right papers are. In the absence of this, in the next section, we explore what happened to accepted papers in terms of their citation impact. 
 
 \subsection{Impact of Accepted Papers}
 
