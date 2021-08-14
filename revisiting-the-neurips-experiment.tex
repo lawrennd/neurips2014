@@ -381,7 +381,26 @@ We'll return to the implications of this analysis in the discussion, but before 
 
 \subsection{Fate of Rejected Papers}
 
-Of the 1,678 papers submitted to NeurIPS 2014, only 414 were presented at the final conference. In the previous section we have shown that the reviewer-assessed quality of these papers gave no indication of their final impact on the community as measured by citation counts. But what about the rejected papers? The conference's ability to assess the quality of these papers 
+Of the 1,678 papers submitted to NeurIPS 2014, only 414 were presented at the final conference. In the previous section we have shown that the reviewer-assessed quality of these papers gave no indication of their final impact on the community as measured by citation counts. But what about the rejected papers?
+
+To trace the fate of the rejected papers, we searched Semantic Scholar for evidence of all 1,264 rejected papers. We looked for papers with similar titles and where the NeurIPS submission's contact author was also in the author list. We were able to track down 680 papers. Of these 177 were only found on arXiv, 76 were found as PDFs online without a publication venue and 427 were published in other venues. The outlets that received ten or more papers from this group were AAAI (72 papers), AISTATS (57 papers), ICML (33 papers), CVPR (17 papers), Later NeurIPS (15 papers), JMLR (14 papers), IJCAI (14 papers), ICLR (13 papers), UAI (11 papers).  
+Opinion about quality of these different outlets will vary from individual, but from our perspective all of these outlets are `top tier' for machine learning and related areas. Note that there is likely a bias towards outlets that have a submission deadline shortly after NeurIPS decisions are public, e.g. submission deadline for AAAI 2015 was six days after NeurIPS decisions were sent to authors. AISTATS has a submission deadline one month after. A Sankey diagram showing where papers submitted to the conference ended up is shown in Figure \ref{figure-where-do-neurips-papers-go}.
+
+\begin{figure}[htb]
+\includegraphics[width=0.9\columnwidth]{diagrams/neurips/where-do-neurips-papers-go.pdf}
+
+\caption{Sankey diagram showing the flow of NeurIPS papers through the system from submission to eventual publication.}
+\label{figure-where-do-neurips-papers-go}
+\end{figure}
+
+For each paper we found, we also used the Semantic Scholar ID to recover the citation count for the paper. This allowed us to measure the correlation between the rejected papers' quality scores and their eventual citation impact. The scatter plot is shown in Figure \ref{figure-citations-vs-average-calibrated-quality-reject}.
+
+\begin{figure}[htb]
+\includegraphics[width=0.90\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-reject.pdf}
+
+\caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the average calibrated quality score for rejected papers. To prevent reidentification of individual papers quality scores and citation count, each point is corrupted by differentially private noise in the plot (correlation is computed before adding differentially private noise).}
+\label{figure-citations-vs-average-calibrated-quality-reject}
+\end{figure}
 
 \section{Conclusions}
 
@@ -390,10 +409,11 @@ Of the 1,678 papers submitted to NeurIPS 2014, only 414 were presented at the fi
 
 \bibliography{revisiting-the-neurips-experiment}
 
+\appendix
+
 \onecolumn
 \aistatstitle{Revisiting the NeurIPS Experiment: \\
 Supplementary Materials}
-\appendix
 \include{the-neurips-experiment.include}
 
 \vfill
