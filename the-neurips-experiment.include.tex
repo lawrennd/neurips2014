@@ -700,7 +700,7 @@ is in Table \ref{table-neurips-experiment-results}.
 \begin{tabular}{lc|c|c|}
 & & \multicolumn{2}{c}{Committee 1} \\
 & & Accept & Reject \\
-\multirow{2}{*}{Committee 2} & Accept & 22 & 22 \hline \\
+\multirow{2}{*}{Committee 2} & Accept & 22 & 22  \\ \hline
 & Reject & 21 & 101 
 \end{tabular}
 \end{table}
@@ -830,7 +830,7 @@ then have been given as in Table \ref{table-random-committee}.
   \begin{tabular}{lc|c|c|}
   & & \multicolumn{2}{c}{Committee 1} \\
   & & Accept & Reject \\
-  \multirow{2}{*}{Committee 2} & Accept & 10.4 (1 in 16) & 31.1 (3 in 16) \hline \\
+  \multirow{2}{*}{Committee 2} & Accept & 10.4 (1 in 16) & 31.1 (3 in 16) \\ \hline
   & Reject & 31.1 (3 in 16) & 93.4 (9 in 16) 
   \end{tabular}
 \end{table}
@@ -2095,14 +2095,14 @@ have a high impact.
 \label{review-impact-time}
 \end{figure}
 
-\begin\{figure\}{[}htb{]}
+\begin{figure}[htb]
 \includegraphics[width=0.50\textwidth]{diagrams/neurips/review-impact-early-late.pdf}
 
-\textbackslash caption\{Bar plot showing the average impact score of
+\caption\{Bar plot showing the average impact score of
 reviews submitted before the deadline and after the deadline. The
 difference in means did not prove to be statistically significant under
 a \(t\)-test (\(p\)-value 5.9\%).\} \label{review-impact-early-late}
-\textbackslash end\{figure\}
+\end{figure}
 
 We find the difference is not quite statistically significant for the
 impact score (\(p\)-value of 5.9\%), but if anything, there is a trend
