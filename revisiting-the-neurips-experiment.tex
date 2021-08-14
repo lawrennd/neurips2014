@@ -349,16 +349,37 @@ Here reviewers are being asked to judge the likely future impact of the paper. T
   \begin{center}
     \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
   \end{center}
-  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average impact score for accepted NeurIPS 2014 papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data  is corrupted by deferentially private noise in the plot. The scatter plot is to show the general shape of the points, validating our use of Pearson's correlation coefficient, $\rho$. Correlation is $0.16 \pm 0.049$ giving a statistically significant result.}
+  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average impact score for accepted NeurIPS 2014 papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data  is corrupted for plotting by differentially private noise. The scatter plot is to show the general shape of the points, validating our use of Pearson's correlation coefficient, $\rho$. Correlation is $0.16 \pm 0.049$ giving a statistically significant result.}
   \label{figure-citations-vs-average-impact-accept}
 \end{figure}
 
-We also note in passing that the correlation for this score across the duplicated papers in the NeurIPS experiment was relatively low:\footnote{Standard error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$} $0.27 \pm 0.075$ (see Appendix \ref{correlation-of-duplicate-papers}).
+Also note that the correlation for this score across the duplicated papers in the NeurIPS experiment was relatively low:\footnote{Standard error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$} $0.27 \pm 0.075$ (see Appendix \ref{correlation-of-duplicate-papers}).
+
+Alongside quality and impact, reviewers are asked to provide a confidence score for their review. Scored on a Likert scale between 1 (`the review is an educated guess') and 5 (`the reviewer is absolutely certain'). The confidence score helps Area Chairs decide how much weight to place on a particular review and whether new reviews may be needed for a particular paper. Appendix \ref{confidence-score} gives a detailed description of the scale.  
+
+The questions about reviewer confidence are entirely focussed on how a given reviewer feels about a particular paper, so they reflect an indvidual reviewers expertise. But, interestingly, the confidence score is the most predictive of the paper's final impact. This implies that underlying the confidence score there is also a particular property of the paper being represented. Likely, reviewers are more confident about well written papers that clearly express the core ideas in the paper. The confidience score may be reflecting some underlying clarity of the paper. Such clarity is also likely to have a downstream effect on citation impact.
+
+\begin{figure}[htb]
+\includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-confidence-accept.pdf}
 
 
+\caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the average confidence score for accepted papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data is corrupted for plotting by differentially private noise. The scatter plot is to show the general shape of the points, validating our use of Pearson's correlation coefficient, $\rho$. Correlation is $0.25 \pm 0.048$ giving a statistically significant result.}
+\label{figure-citations-vs-average-confidence-accept}
+\end{figure}
 
+More evidence for this notion of clarity comes from analyzing the correlation of the confidence score across the two different committees in the NeurIPS experiment. Correlation of confidence scores was was $0.39 \pm 0.072$ (see Appendix \ref{correlation-of-duplicate-papers}), giving additional evidence for the influence of clarity in the reviewers' confidence about the paper.
+
+Conferences and journals are often measured and ranked by their impact factor. These impact factors are metrics that derive from citation counts of the papers presented in those outlets. But our long term analysis shows that at NeurIPS 2014, these scores were uncorrelated with the final citation impact of the papers. This raises serious questions about our processes. For accepted papers, reviewers seem to have some notion of quality that is independent of the papers' final influence on the field. Indeed, reviewer instructions for the conference implied that should be the case, with a request for an additional impact score that is independent of the quality score.
+
+We were motivated to explore the relation between quality scores and citation counts in an effort to determine how `correct' the decisions were within the reviewing process. We have argued that if errors are being made, then we would be better off making such errors inconsistently, rather than always rejecting the papers for the same misconcwithin the reviewing process. If we accept that final paper citation counts are some m
+
+Finally, reviewer confidence scores are being influenced by particular characteristics of the papers, what we might think of as the clarity of the paper. As a result, in our analysis, reviewer confidence turned out to be the best indicator of the paper's citation impact.
+
+We'll return to the implications of this analysis in the discussion, but before exploring further, we will turn our attention to the \emph{rejected} papers. Accepted papers, by their nature, are those that are scoring at the high end of the quality score. To explore the low end of the quality score, we turn to papers that were not presented at the conference.
 
 \subsection{Fate of Rejected Papers}
+
+Of the 1,678 papers submitted to NeurIPS 2014, only 414 were presented at the final conference. In the previous section we have shown that the reviewer-assessed quality of thse papers gave no indication of their final impact on the community as measured by citation counts. But what about the rejected papers? Our the conference's ability to assess the quality of these papers 
 
 \section{Conclusions}
 
