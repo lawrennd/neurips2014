@@ -159,7 +159,7 @@ reviewing body randomly into two groups, while the Area Chairs were
 split manually to ensure proper coverage of expertise in the two bodies.
 Each selected paper went through the review process independently.
 
-The results of this process are summarized in Table \ref{table-neurips-experiment-results}, where the
+The results of this process are summarised in Table \ref{table-neurips-experiment-results}, where the
 \begin{table}[htb]
 \caption{Table showing the results from the two committees as a confusion matrix. Four papers were rejected or withdrawn without review.}
 \label{table-neurips-experiment-results}
@@ -199,7 +199,7 @@ classical challenge with such scales is that they may be interpreted
 differently by different reviewers. Since the TK conference, NeurIPS
 chairs have often calibrated reviewer scores using scripts of their
 own devising. For example, John Platt who chaired the conference in
-2006, used a regularized least squares model, this model is written up
+2006, used a regularised least squares model, this model is written up
 in \cite{Platt-calibration12}. The year before us, Zoubin Ghaharamani
 and Max Welling used a Bayesian extension of this model
 \cite{Ge-bayesian15}. Corinna Cortes and Neil Lawrence also used a
@@ -294,7 +294,7 @@ suggests that we should expect an accept consistency of around
 63\%. This is higher than the accept consistency that we
 observed, but it falls within the bounds of statistical error suggested e.g. by
 a Bayesian analysis of the data (see Appendix \ref{bayesian-analysis}). Conceptually, the large error comes because although experimental sample size overall is a relatively healthy 166, the low accept rate for the conference means that the number of samples when exploring consistency across the two committees is around 40. This leads to a standard error of for our our estimate\footnote{Consider Committee 1 with $n=43$ accepts. Of these 21 are rejected by committee 2. Our estimate of the probability of inconsistency is given by $p=21/43$ with a standard error of $\sqrt{\frac{p(1-p)}{n}} = 0.076$.} of around 8\%.
-Of course, the simulation model also oversimplifies the complexity of the final decision process, which involved detailed discussion of each papers between reviewers authors and program committee members. This simplification may be introducing some optimisitic bias in the simulation's estimate of the final accept precision. But it seems that our model simulation model is a plausible starting point for exporing the expected consistency of a given reviewing set up.
+Of course, the simulation model also oversimplifies the complexity of the final decision process, which involved detailed discussion of each papers between reviewers authors and program committee members. This simplification may be introducing some optimistic bias in the simulation's estimate of the final accept precision. But it seems that our model simulation model is a plausible starting point for exploring the expected consistency of a given reviewing set up.
 
 \begin{figure}[htb]
 \includegraphics[width=0.90\columnwidth]{diagrams/neurips/accept-precision-vs-accept-rate.pdf}
@@ -310,21 +310,21 @@ an accept precision for the conference of around 63\%. This is consistent with t
 
 \subsubsection{Consistency and Correctness}
 
-It seems self-evident that we want greater consistency between review committees. After all, if decisions are inconsistent, then how can they be `correct'? While it's true that inconsistency implies incorrectness, the converse is not true. Consistency does not imply correctness. For example, if both committees were to choose papers to accept based on how many references they include, then their decisions would be consistent, but not correct. Given that we know that \emph{incorrect} decisions will be made, then we can also phrase the question in another way. Given that there will be errors, do we prefer errors which will be consistently made? When there are errors, variation in decision making may be a good thing: it could prevent a particular type of paper being consistently descriminated against.
+It seems self-evident that we want greater consistency between review committees. After all, if decisions are inconsistent, then how can they be `correct'? While it's true that inconsistency implies incorrectness, the converse is not true. Consistency does not imply correctness. For example, if both committees were to choose papers to accept based on how many references they include, then their decisions would be consistent, but not correct. Given that we know that \emph{incorrect} decisions will be made, then we can also phrase the question in another way. Given that there will be errors, do we prefer errors which will be consistently made? When there are errors, variation in decision making may be a good thing: it could prevent a particular type of paper being consistently discriminated against.
 
 We've established that there is inconsistency in the peer review process, and we have associated that inconsistency with subjective scoring by reviewers. But we have also warned against over emphasis on consistency as an aim for a reviewing process. Consistency is only a good thing if the decisions can also be shown to be correct. So, a follow up question would seem to be: how good is the committee at selecting the `right' papers? Unfortunately we don't have a ground truth assessment of what the right papers are. But, because time has passed between the conference and today, we can explore what happened to accepted papers in terms of their citation impact. 
 
 \subsection{Impact of Accepted Papers}
 
-Seven years have passed since the NeurIPS experiment and the papers published at the conference have had time to establish themselves. In this section we explore how they fared in terms of their \emph{citation impact}.\footnote{Citation counts certainly have flaws when being used as a measure of impact of a paper. They do not represent, e.g. adoption in industry, adoption for public policy and public awareness/education. However, they do provide a quantitative measure that allows us to analyze the impact of conference papers at scale.}
+Seven years have passed since the NeurIPS experiment and the papers published at the conference have had time to establish themselves. In this section we explore how they fared in terms of their \emph{citation impact}.\footnote{Citation counts certainly have flaws when being used as a measure of impact of a paper. They do not represent, e.g. adoption in industry, adoption for public policy and public awareness/education. However, they do provide a quantitative measure that allows us to analyse the impact of conference papers at scale.}
 
-To determine the citation impact of papers, we searched for each accepted paper from the conference on Semantic Scholar.\footnote{See \href{https://www.semanticscholar.org/about}.} The Semantic Scholar ID of the papers was recorded and we made use of the Semantic Scholar API to retrieve the number of citing papers. The citation scores were transformed into the citation impact using a monotonic transformation as follows,
+To determine the citation impact of papers, we searched for each accepted paper from the conference on Semantic Scholar.\footnote{See \href{https://www.semanticscholar.org/about}{https://www.semanticscholar.org/about}.} The Semantic Scholar ID of the papers was recorded and we made use of the Semantic Scholar API to retrieve the number of citing papers. The citation scores were transformed into the citation impact using a monotonic transformation as follows,
 $$
 \text{citation impact} = \log_{10} (1 + \text{number of citations}).
 $$
 This transformation eliminated the heavy tails of the distribution of citations, leading to a citation score distribution that is closer to a Gaussian, enabling us to make use of Pearson's $\rho$ for correlation measurement.
 
-We computed the correlation between the average calibrated quality score and the citation impact. There was \emph{no significant correlation} between those scores. We show a scatter plot of the data in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}. In the scatter plot we have added differential privacy noise to the values shown in the plot to obsfucate individual paper identities. Correlation coefficient is computed before adding the differential privacy noise (see Appendix \ref{correlation-of-quality-scores-and-citation}).
+We computed the correlation between the average calibrated quality score and the citation impact. There was \emph{no significant correlation} between those scores. We show a scatter plot of the data in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}. In the scatter plot we have added differential privacy noise to the values shown in the plot to obfuscate individual paper identities. Correlation coefficient is computed before adding the differential privacy noise (see Appendix \ref{correlation-of-quality-scores-and-citation}).
 
 \begin{figure}[htb]
   \begin{center}
@@ -349,7 +349,7 @@ Here reviewers are being asked to judge the likely future impact of the paper. T
   \begin{center}
     \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
   \end{center}
-  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average impact score for accepted NeurIPS 2014 papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data  is corrupted by differentially private noise in the plot. The scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$. Correlation is $0.16 \pm 0.049$ giving a statistically significant result.}
+  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average impact score for accepted NeurIPS 2014 papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data  is corrupted by deferentially private noise in the plot. The scatter plot is to show the general shape of the points, validating our use of Pearson's correlation coefficient, $\rho$. Correlation is $0.16 \pm 0.049$ giving a statistically significant result.}
   \label{figure-citations-vs-average-impact-accept}
 \end{figure}
 
