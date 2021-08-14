@@ -324,17 +324,17 @@ $$
 $$
 This transformation eliminated the heavy tails of the distribution of citations, leading to a citation score distribution that is closer to a Gaussian, enabling us to make use of Pearson's $\rho$ for correlation measurement.
 
-We computed the correlation between the average calibrated quality score and the citation impact. There was \emph{no significant correlation} between those scores. We show a scatter plot of the data in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}. In the scatter plot we have added differential privacy noise to the values shown in the plot to obsfucate individual paper identities. Correlation coefficient is computed before adding the differential privacy noice (see Appendix \ref{correlation-of-quality-scores-and-citation}).
+We computed the correlation between the average calibrated quality score and the citation impact. There was \emph{no significant correlation} between those scores. We show a scatter plot of the data in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}. In the scatter plot we have added differential privacy noise to the values shown in the plot to obsfucate individual paper identities. Correlation coefficient is computed before adding the differential privacy noise (see Appendix \ref{correlation-of-quality-scores-and-citation}).
 
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
   \end{center}
-  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average calibrated quality score for accepted NeurIPS 2014 papers. To prevent reidentification of an individual paper's quality scores each point is corrupted by differentially private noise in the plot (correlation is computed before adding differentially private noise). We have also purposely left off the scale, as the main point in including the scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$.}
+  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average calibrated quality score for accepted NeurIPS 2014 papers. To prevent reidentification of an individual paper's quality scores each point is corrupted by differentially private noise in the plot (correlation is computed before adding differentially private noise). We have also purposely left off the scale, as the main point in including the scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$. The sample size is 414 accepted papers which gives us $\rho = 0.051 \pm 0.049$ indicating no significant correlation.}
   \label{figure-citations-vs-average-calibrated-quality-accept}
 \end{figure}
 
-While the calibrated quality score is not specifically designed to measure impact. However, it may be surprising no correlation between this score and citation impact for the group of accepted papers. The implication that the quality score, which is the main criterion on which accept/reject decisions are being made, is uninformative in determining the paper's eventual influence should give significant pause for thought.
+While the calibrated quality score is not specifically designed to measure impact. However, it may be surprising that there's no correlation between this score and citation impact for the group of accepted papers. The implication that the quality score, which is the main criterion on which accept/reject decisions are being made, is uninformative in determining the paper's eventual influence should give significant pause for thought.
 
 Does this mean that reviewers can't judge what papers are likely to be influential? Or is something else going on? In 2013 Welling and Ghaharamani introduced a separate scoring indicator (see Appendix \ref{impact-score}). Perhaps the answer to our quandry in the quality scores lies in the phrasing of the question they introduced.
 \begin{quote}
@@ -349,11 +349,11 @@ Here reviewers are being asked to judge the likely future impact of the paper. T
   \begin{center}
     \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
   \end{center}
-  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average impact score for accepted NeurIPS 2014 papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data  is corrupted by differentially private noise in the plot. The scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$.}
+  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average impact score for accepted NeurIPS 2014 papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data  is corrupted by differentially private noise in the plot. The scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$. Correlation is $0.16 \pm 0.049$ giving a statistically significant result.}
   \label{figure-citations-vs-average-impact-accept}
 \end{figure}
 
-and we note in passing that the correlation for this score across the duplicated papers in the NeurIPS experiment was also relatively low: 0.27 (see Appendix \ref{correlation-of-duplicate-papers}).
+and we note in passing that the correlation for this score across the duplicated papers in the NeurIPS experiment was also relatively low:\footnote{Standard error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$} $0.27 \pm 0.075$ (see Appendix \ref{correlation-of-duplicate-papers}).
 
 
 \subsection{Fate of Rejected Papers}
