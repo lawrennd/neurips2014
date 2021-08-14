@@ -334,7 +334,7 @@ We computed the correlation between the average calibrated quality score and the
   \label{figure-citations-vs-average-calibrated-quality-accept}
 \end{figure}
 
-While the calibrated quality score is not specifically designed to measure impact. However, it may be surprising that there's no correlation between this score and citation impact for the group of accepted papers. The implication that the quality score, which is the main criterion on which accept/reject decisions are being made, is uninformative in determining the paper's eventual influence should give significant pause for thought.
+The calibrated quality score is not specifically designed to measure impact, but it still may be surprising that there's no correlation between this score and citation impact for the group of accepted papers. The implication that the quality score, which is the main criterion on which accept/reject decisions are being made, is uninformative in determining the paper's eventual influence should give pause for thought.
 
 Does this mean that reviewers can't judge what papers are likely to be influential? Or is something else going on? In 2013 Welling and Ghaharamani introduced a separate scoring indicator (see Appendix \ref{impact-score}). Perhaps the answer to our quandry in the quality scores lies in the phrasing of the question they introduced.
 \begin{quote}
@@ -343,7 +343,7 @@ identify papers that are very different, original, or otherwise
 potentially impactful for the NIPS community.
 \end{quote}
 
-Here reviewers are being asked to judge the likely future impact of the paper. The score is a binary value, work is categorised as being either `potentially have a major impact' or `unlikely to have much impact'. Analysis of this score does show a statistically significant correlation with an accepted paper's citation impact.
+Here reviewers are being asked to judge the likely future impact of the paper. The score is a binary value, work is categorised as being either `potentially have a major impact' or `unlikely to have much impact'. Analysis of this score does show a statistically significant correlation with an accepted paper's citation impact (see Figure \ref{figure-citations-vs-average-impact-accept}), but the magnitude of the effect is small. 
 
 \begin{figure}[htb]
   \begin{center}
@@ -353,7 +353,9 @@ Here reviewers are being asked to judge the likely future impact of the paper. T
   \label{figure-citations-vs-average-impact-accept}
 \end{figure}
 
-and we note in passing that the correlation for this score across the duplicated papers in the NeurIPS experiment was also relatively low:\footnote{Standard error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$} $0.27 \pm 0.075$ (see Appendix \ref{correlation-of-duplicate-papers}).
+We also note in passing that the correlation for this score across the duplicated papers in the NeurIPS experiment was relatively low:\footnote{Standard error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$} $0.27 \pm 0.075$ (see Appendix \ref{correlation-of-duplicate-papers}).
+
+
 
 
 \subsection{Fate of Rejected Papers}
