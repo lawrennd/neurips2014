@@ -261,10 +261,12 @@ Table \ref{fitted-calibration-parameters}.
 \begin{table}[htb]
   \label{table-fitted-calibration-parameters}
   \caption{Fitted parameters of the calibration model. The parameters are very well determined as the model is based on around 6,000 reviewer scores. Once the individual reviewer offset, $\alpha_b=0.24$, is removed, the calibrated score $f_i = 1.28$ plus $\epsilon_{i,j}=1.27$ is made up approximately of subjective and objective assessment in roughly equal proportion.} 
+  \begin{center}
   \begin{tabular}{ccc}
-    \alpha_f & \alpha _b & \sigma^2 \\
+    $\alpha_f$ & $\alpha _b$ & $\sigma^2$ \\
     1.28 & 0.24 & 1.27
   \end{tabular}
+  \end{center}
 \end{table}  
 
 Under the model assumptions we see that calibrated review scores are
@@ -332,7 +334,7 @@ We computed the correlation between the average calibrated quality score and the
   \begin{center}
     \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
   \end{center}
-  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average calibrated quality score for accepted NeurIPS 2014 papers. To prevent reidentification of an individual paper's quality scores each point is corrupted by differentially private noise in the plot (correlation is computed before adding differentially private noise). We have also purposely left off the scale, as the main point in including the scatter plot is to show the general shape of the points, validating our use of Pearon's correlation coefficient, $\rho$. The sample size is 414 accepted papers which gives us $\rho = 0.051 \pm 0.049$ indicating no significant correlation.}
+  \caption{Scatter plot of the citation impact (defined as $\log_{10}(1+\text{citations})$) against the average calibrated quality score for accepted NeurIPS 2014 papers. To prevent reidentification of an individual paper's quality scores each point is corrupted by differentially private noise in the plot (correlation is computed before adding differentially private noise). We have also purposely left off the scale, as the main point in including the scatter plot is to show the general shape of the points, validating our use of Pearson's correlation coefficient, $\rho$. The sample size is 414 accepted papers which gives us $\rho = 0.051 \pm 0.049$ indicating no significant correlation.}
   \label{figure-citations-vs-average-calibrated-quality-accept}
 \end{figure}
 
@@ -359,21 +361,21 @@ Also note that the correlation for this score across the duplicated papers in th
 
 Alongside quality and impact, reviewers are asked to provide a confidence score for their review. Scored on a Likert scale between 1 (`the review is an educated guess') and 5 (`the reviewer is absolutely certain'). The confidence score helps Area Chairs decide how much weight to place on a particular review and whether new reviews may be needed for a particular paper. Appendix \ref{confidence-score} gives a detailed description of the scale.  
 
-The questions about reviewer confidence are entirely focussed on how a given reviewer feels about a particular paper, so they reflect an indvidual reviewers expertise. But, interestingly, the confidence score is the most predictive of the paper's final impact. This implies that underlying the confidence score there is also a particular property of the paper being represented. Likely, reviewers are more confident about well written papers that clearly express the core ideas in the paper. The confidience score may be reflecting some underlying clarity of the paper. Such clarity is also likely to have a downstream effect on citation impact.
+The questions about reviewer confidence are entirely focused on how a given reviewer feels about a particular paper, so they reflect an individual reviewers expertise. But, interestingly, the confidence score is the most predictive of the paper's final impact. This implies that underlying the confidence score there is also a particular property of the paper being represented. Likely, reviewers are more confident about well written papers that clearly express the core ideas in the paper. The confidence score may be reflecting some underlying clarity of the paper. Such clarity is also likely to have a downstream effect on citation impact.
 
 \begin{figure}[htb]
 \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-confidence-accept.pdf}
 
 
-\caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the average confidence score for accepted papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data is corrupted for plotting by differentially private noise. The scatter plot is to show the general shape of the points, validating our use of Pearson's correlation coefficient, $\rho$. Correlation is $0.25 \pm 0.048$ giving a statistically significant result.}
+\caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the average confidence score for accepted papers. As in Figure \ref{figure-citations-vs-average-calibrated-quality-accept}, data is corrupted for plotting by differentially private noise. The scatter plot is to show the general shape of the points, validating our use of Pearson's correlation coefficient, $\rho$. Correlation is $0.25 \pm 0.048$ giving a statistically positive correlation between the two values.}
 \label{figure-citations-vs-average-confidence-accept}
 \end{figure}
 
-More evidence for this notion of clarity comes from analyzing the correlation of the confidence score across the two different committees in the NeurIPS experiment. Correlation of confidence scores was was $0.39 \pm 0.072$ (see Appendix \ref{correlation-of-duplicate-papers}), giving additional evidence for the influence of clarity in the reviewers' confidence about the paper.
+More evidence for this notion of clarity comes from analysing the correlation of the confidence score across the two different committees in the NeurIPS experiment. Correlation of confidence scores was was $0.39 \pm 0.072$ (see Appendix \ref{correlation-of-duplicate-papers}), giving additional evidence for the influence of clarity in the reviewers' confidence about the paper.
 
 Conferences and journals are often measured and ranked by their impact factor. These impact factors are metrics that derive from citation counts of the papers presented in those outlets. But our long term analysis shows that at NeurIPS 2014, these scores were uncorrelated with the final citation impact of the papers. This raises serious questions about our processes. For accepted papers, reviewers seem to have some notion of quality that is independent of the papers' final influence on the field. Indeed, reviewer instructions for the conference implied that should be the case, with a request for an additional impact score that is independent of the quality score.
 
-We were motivated to explore the relation between quality scores and citation counts in an effort to determine how `correct' the decisions were within the reviewing process. We have argued that if errors are being made, then we would be better off making such errors inconsistently, rather than always rejecting the papers for the same misconcwithin the reviewing process. If we accept that final paper citation counts are some m
+We were motivated to explore the relation between quality scores and citation counts in an effort to determine how `correct' the decisions were within the reviewing process. We have argued that if errors are being made, then we would be better off making such errors inconsistently, rather than always rejecting the papers for the same misconceptions about the role of the reviewing process. If we accept that final paper citation counts are some measure of paper quality, then we see that reviewers fail to capture this in their scores.
 
 Finally, reviewer confidence scores are being influenced by particular characteristics of the papers, what we might think of as the clarity of the paper. As a result, in our analysis, reviewer confidence turned out to be the best indicator of the paper's citation impact.
 
