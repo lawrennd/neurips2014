@@ -80,6 +80,21 @@ researchers.
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
+The NeurIPS conference is one of the premier conferences in machine
+learning.  The papers presented at this conference have over the years
+proven to be highly influential including breakthrough papers in
+supervised and unsupervised learning, structure prediction, etc.,
+providing theoretical, algorithmical and experimental justification
+for the proposed techniques.\ignore{unsupervised learning with neural
+networks as well as papers on sequence-to-sequence learning for
+machine translation.} These papers have gone on to have widespread
+societal impact.
+
+Since around 2010, the increased interest in AI has
+significantly increased the size of the conference and already in
+2014, questions around the quality of the reviewing process in
+connection with this increased load on reviewers had been raised.
+
 In 2014 the Program Chairs of the NeurIPS conference, Corinna Cortes
 and Neil Lawrence, implemented the NeurIPS experiment. The experiment
 was designed to assess the consistency of the conference peer
@@ -87,19 +102,13 @@ reviewing process. From the conference 10\% of the papers were
 randomly chosen to be reviewed by two independent program
 committees. The objective was to determine if decision making was
 consistent across these two committees.  The results showed that the
-decisions between the two committees were 74\% consistent as compared
-with a random committee that would have been 62.5\% consistent. While
-the review process can be shown to be significantly better than a
-random committee (see Appendix~\ref{a-random-committee-25} in the
-supplementary material for an analysis), the reaction from some in the
-community was one of surprise (see Appendix
-\ref{reaction-after-experiment} in the supplementary material for an
-overview of the reaction). A particular focus of concern was the fact
-that the two committees were only around 50\% consistent about which
-papers were selected to appear at the conference, see Table~\ref{table-neurips-experiment-results}. We call this
-statistic the \emph{accept precision}. An accept precision of 50\%
-tells you that if the review process had been independently rerun,
-half the papers published at the conference would have been different.
+decisions between the two committees was better than random, but still
+surprisingly low to the community.  A particular focus of concern was
+the fact that the two committees were 
+very inconsistent about which papers were selected to appear at the
+conference, so that if the review process had been independently
+rerun, about half the papers published at the conference would have
+been different.
 
 We revisit the 2014 conference data and explore these numbers further
 in three ways. First, we use the fact that reviewer scores underwent a
@@ -129,8 +138,8 @@ From these analyses we conclude that inconsistency in the conference
 reviewing process is a consequence of the subjectivity in reviewer
 assessments. And that in the high-scoring range, reviewer quality
 scores are not a good proxy for citation impact. However, reviewers
-seem better at identifying weaker papers: low-scoring papers were (on
-average) low impact. In our conclusions, we argue that the different
+seem better at identifying weaker papers: low-scoring papers resulted (on
+average) in lower impact papers. In our conclusions, we argue that the different
 facets of a paper could be better assessed with clearer scoring
 criteria. This would give program chairs more flexibility in guiding
 the nature of the conference.
@@ -141,35 +150,65 @@ reminder of the NeurIPS experiment.
 \hypertarget{review-of-the-conference-and-the-experiment}{%
 \subsection{Review of the Conference and the
 Experiment}\label{review-of-the-conference-and-the-experiment}}
-
-The NeurIPS conference is one of the premier conferences in machine
-learning. In 2014 the conference was undergoing a period of rapid
-growth. The conference was held in Montreal with 2,581 attendees at the
-conference and associated workshops and tutorials. The papers presented
-there have proven to be highly influential including breakthrough papers
-in supervised and unsupervised learning, structure prediction, etc., providing theoretical, algorithmical and experimental justification for the proposed techniques.\ignore{unsupervised learning with neural networks as well as papers on
-sequence-to-sequence learning for machine translation.} These papers have
-gone on to have widespread societal impact.
+The NeurIPS 2014 conference was held in Montreal with 2,581 attendees at the
+conference and associated workshops and tutorials. 
 
 At NeurIPS 2014, each paper was assigned to an Area Chair and at least
 three reviewers. Final decisions about papers were made by video
-conference between Area Chairs and the Program Chairs. For more details
-on the reviewing process and the timelines involved see Appendix~\ref{timeline-for-neurips} in the supplementary material.
+conference calls between Area Chairs and the Program Chairs. For more details
+on the reviewing process and the timelines involved see
+Appendix~\ref{app:review-details} in the supplementary material. 
 
 The Program Chairs of the 2014 conference decided to test the
 consistency of the peer review process through a randomised experiment.
-From the 1,678 submissions they chose 170 papers to undergo review by
+From the 1,678 submissions they chose about 10\% or 170 papers to undergo review by
 two separate committees. Each committee was formed by separating the
 reviewing body randomly into two groups, while the Area Chairs were
 split manually to ensure proper coverage of expertise in the two bodies.
-Each selected paper went through the review process independently. Authors were notified if their paper was in the experiment as they would have to write two independent author rebuttals.
+Each selected paper went through the review process
+independently. Authors were notified if their paper was in the
+experiment as they would have to write two independent author
+rebuttals. For the final conference a paper was accepted if any of the
+committees would have accepted it. 
+
+\section{Outcome Spectulations}
+
+Inconsistancy in the reviewing process can be quantified in a number
+of ways. As the Program Chairs, we opted for asking the question what is the
+\% of the papers that yield *inconsistent* decisions.
+With the help of \href{http://nicolofusi.com/}{Nicolo Fusi},
+\href{https://www.linkedin.com/in/ctwardy/}{Charles Twardy} and
+the entire Scicast team we launched a
+Scicast question about a week before the results were revealed.  The comment
+thread for that question already had a lively discussion before the
+meeting. Unfortunately, Scicast does not exist anymore. Just for informational
+purposes before we began reviewing Corinna forecast this figure would be
+25\% and Neil forecast it would be 20\%. The box plot summary of
+predictions from Scicast is below.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{diagrams/neurips/scicast-forecast.png}
+\end{center}
+\caption{Summary forecast from those that responded to a scicast question about how consistent the decision making was.}
+\label{scicast-forecast}
+\end{figure}
+
+As can be seen, the voting population had little faith in the
+reviewing process and the median vote was around 30\%.
+
+\section{Results}
 
 The results of this process are summarised in Table
-\ref{table-neurips-experiment-results}. For the final conference a paper was accepted if any of the committees would have accepted it. As the table illustrates, the two committee only had a 50\% agreement on what papers to accept.
+\ref{table-neurips-experiment-results}. Four papers had to
+be withdrawn or were rejected without completing the review process
+resulting in 166 papers completing the experiment. Of those the two committees disagreed
+on 43 or 25.0\% of the papers.
+
 \begin{table}[htb]
 \caption{Table showing the results from the two committees as a
   confusion matrix. Four papers were rejected or withdrawn without
-  review.}
+  review resulting in a final of 166 papers.}
 \label{table-neurips-experiment-results}
 
 \begin{tabular}{lc|c|c|}
@@ -180,16 +219,29 @@ The results of this process are summarised in Table
 \end{tabular}
 \end{table}
 
-Cortes and Lawrence also looked at the correlation between calibrated review
-scores across the two independent committees, a scatter plot of the
-\cc{mean?} scores from the committees is shown in Figure~\ref{figure-calibrated-quality-correlation}, the Pearson correlation
-was computed as $\rho=0.55$. For details on the calibration process
-see Section~\ref{reviewer-calibration-and-scoring-inconsistency}.
+Another way of characterizing the outcome is to say that of the papers
+accepted. the 'other' committee would have only accepted about 50\% of them:
+of the 43 accepted papers by Committee 1, Committee 2 only accepted
+22, or 51\%, while of the 44 accepted papers by Committee 2, Committee
+1 only accepted 22 or 50\% of them. That is, if the conference
+reviewing had been run with a different committee, only half of the
+papers presented at the conference would have been the same. For other
+ways to characterize the result table, see Appendix~\ref{app:neurips-experiment-results}.
 
+A reviewer verdict is summarized by the 'Quantitative Evaluation'
+score, see Appendix~\ref{app:review-details} on a 10 point Likerts
+scale.  This score is often calibrated per reviewer to account for
+difference in reviewer interpretation, see
+Section~\ref{sec:calibration}. We looked at the correlation between
+the mean calibrated review
+scores per paper across the two independent committees. A scatter plot of these
+scores from the committees is shown in Figure~\ref{figure-calibrated-quality-correlation}, the Pearson correlation
+was computed as $\rho=0.55$. 
 \begin{figure}[htb]
 \includegraphics[width=0.9\columnwidth]{diagrams/neurips/calibrated-quality-correlation.pdf}
 
-\caption{Correlation between calibrated reviewer scores across the two
+\caption{Correlation between mean calibrated reviewer scores per paper
+  across the two
   independent committees. Standard error on the correlation for
   $n=166$ papers and Gaussian assumptions is $s_r = 0.065$.}
 \label{figure-calibrated-quality-correlation}
@@ -198,22 +250,60 @@ see Section~\ref{reviewer-calibration-and-scoring-inconsistency}.
 During the experiment, the timing of submitted reviews was also
 tracked. There is evidence that reviews received after the review submission
 deadline, were shorter, typically gave higher scores but with lower
-confidence (see Appendix~\label{effect-of-late-reviews}), but there
+confidence (see Appendix~\ref{app:effect-of-late-reviews}), but there
 was insufficient power in the experiment to determine whether this had
 a significant effect on the correlation across the program committees.
 
-\section{Results}
+\section{Public Response}
+There was a lot of discussion of the result, both at the
+conference and on bulletin boards since. The main topic of discussion
+was that the committees were only in agreement on around 50\% of the papers
+they accepted. As quickly pointed out by many of the blog posts listed
+below, the committes acted better than random, but not
+significantly. The NeurIPS conference typically has an acceptance rate
+of 23.5\% in which case two random committes would be in agreement on
+accepted papers only of the order {\tt accept-accept/accept} or in
+23.5\% of the accepted papers. As such the committes acted better than
+random, though maybe not as signifcantly as hoped for.
 
+\begin{itemize}
+\item
+  Public reaction after experiment
+  \href{http://inverseprobability.com/2015/01/16/blogs-on-the-NeurIPS-experiment/}{documented
+  by Neil Lawrence}
+\item
+  \href{http://inverseprobability.com/2014/07/01/open-data-science/}{Open
+  Data Science} (see Heidelberg Meeting)
+\item
+  NeurIPS was run in a very open way.
+  \href{https://github.com/sods/conference}{Code} and
+  \href{http://inverseprobability.com/2014/12/16/the-NeurIPS-experiment/}{blog
+  posts by Neil Lawrence} all available!
+\item
+  Reaction triggered by
+  \href{http://blog.mrtz.org/2014/12/15/the-NeurIPS-experiment.html}{blog
+  post by Eric Price}.
+\end{itemize}
+
+Much of the discussion speculates on the number of consistent accepts in
+the process (using the main conference accept rate as a proxy). It
+therefore produces numbers that don't match ours above. This is because
+the computed accept rate of the individual committees is different from
+that of the main conference. This could be due to a bias for the
+duplicated papers, or statistical sampling error. We look at these
+questions below. First, to get the reader primed for thinking about
+these numbers we discuss some context for placing these numbers.
+
+\section{Analysis}
 Having given an overview of the experiment, we now follow up with our
 three separate treatments of the results. First we will explore the
 relationship between the conference calibration and the experimental
 outcome.
 
-\hypertarget{reviewer-calibration-and-scoring-inconsistency}{%
-\subsection{Reviewer Calibration and Scoring Inconsistency}\label{reviewer-calibration-and-scoring-inconsistency}}
-
+\subsection{Reviewer Calibration}
+\label{sec:calibration}
 NeurIPS papers are evaluated by quality scores on a 10 point Likert
-scale (see Appendix~\ref{paper-scoring-and-reviewer-instructions}). A
+scale (see Appendix~\ref{app:review-details}). A
 classical challenge with such scales is that they may be interpreted
 differently by different reviewers. Since the TK\cc{??} conference, NeurIPS
 chairs have often calibrated reviewer scores using scripts of their
@@ -224,7 +314,7 @@ and Max Welling used a Bayesian extension of this model
 \cite{Ge-bayesian15}. Corinna Cortes and Neil Lawrence also used a
 Bayesian variant of the Platt-Burges model, but one that was
 formulated as a Gaussian process. We give the details of this approach
-in the supplementary material (Appendix~\ref{reviewer-calibration}),
+in the supplementary material (Appendix~\ref{app:reviewer-calibration}),
 but in essence the core of the model is as follows. Each review score
 is decomposed into three parts,
 $$
@@ -270,10 +360,10 @@ subjective quality rating respectively. As described in the appendix,
 the calibrated reviewer score is estimated as the conditional density
 of $f_i + \epsilon_{i,j}$. Note that the calibrated reviewer score
 \emph{includes} the reviewer's \emph{subjective} opinion about the
-paper. See Appendix~\ref{reviewer-calibration-model} for more details
+paper. See Appendix~\ref{app:reviewer-calibration} for more details
 on the model as well as code for fitting the model in GPy
-\cite{Gpy-20012}. The parameters of the fitted model are given in
-Table \ref{fitted-calibration-parameters}.
+\cite{Gpy-2012}. The parameters of the fitted model are given in
+Table \ref{table-fitted-calibration-parameters}.
 
 \begin{table}[htb]
   \label{table-fitted-calibration-parameters}
@@ -299,9 +389,8 @@ shared with the other reviewers. This figure may seem large, but in
 retrospect it is perhaps not surprising. Papers are judged by
 subjective criteria such as novelty as well as more objective criteria
 such as rigour. The subjectivity of reviewer scores also seems a
-sensible starting point to unpick \cc{??, uncover?} the inconsistency between the two
+sensible starting point to  uncover the inconsistency between the two
 committees described by the NeurIPS experiment. 
-
 
 The result is consistent with the correlation coefficient we computed
 between the two independent committees, $\rho = 0.55 \pm 0.065$. Our
@@ -357,7 +446,7 @@ unreliability of the accept precision statistic. The statistical power
 is low because the number of samples used in its calculation is given
 by accept rate $\times$ experiment sample size.
 
-\subsubsection{Consistency and Correctness}
+\subsection{Consistency and Correctness}
 
 It seems self-evident that we are looking for greater consistency between review
 committees. After all, if decisions are inconsistent, then how can
@@ -383,7 +472,7 @@ truth assessment of what the right papers are. But, because time has
 passed between the conference and today, we can explore what happened
 to accepted papers in terms of their citation impact.
 
-\subsection{Impact of Accepted Papers}
+\section{Impact of Accepted Papers}
 
 Seven years have passed since the NeurIPS experiment and the papers
 published at the conference have had time to establish themselves. In
@@ -448,7 +537,9 @@ give pause for thought.
 
 Does this mean that reviewers can't judge what papers are likely to be
 influential? Or is something else going on? In 2013 Welling and
-Ghaharamani introduced a separate scoring indicator (see Appendix~\ref{impact-score}). Perhaps the answer to our quandry in the quality
+Ghaharamani introduced a separate scoring indicator (see
+Appendix~\ref{app:review-details}). 
+Perhaps the answer to our quandry in the quality
 scores lies in the phrasing of the question they introduced.
 \begin{quote}
   Independently of the Quality Score above, this is your opportunity to
@@ -553,7 +644,7 @@ that are scoring at the high end of the quality score. To explore the
 low end of the quality score, we turn to papers that were not
 presented at the conference.
 
-\subsection{Fate of Rejected Papers}
+\section{Fate of Rejected Papers}
 
 Of the 1,678 papers submitted to NeurIPS 2014, only 414 were presented
 at the final conference. In the previous section we have shown that
@@ -692,14 +783,11 @@ reviewers.
 
 \subsubsection*{Acknowledgements}
 
-
+\newpage
+\bibliographystyle{plain}
 \bibliography{revisiting-the-neurips-experiment}
-
-\appendix
-
+\newpage
 \onecolumn
-\aistatstitle{Revisiting the NeurIPS Experiment: \\Supplementary Materials}
-\include{the-neurips-experiment.include}
-
-\vfill
+\appendix
+\input{the-neurips-experiment.include}
 \end{document}
