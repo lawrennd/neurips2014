@@ -200,10 +200,10 @@ reviewer should comment on all of these, if possible:
 The results of the experiment are listed in Table~\ref{table-neurips-experiment-results} in the main body of the paper.
 
 There are a few ways of summarising the numbers in this table as percent
-or probabilities. First, the inconsistency, the proportion of decisions
+or probabilities. First, the inconsistency is the proportion of decisions
 that were not the same across the two committees. The decisions were
 inconsistent for 43 out of 166 papers or 0.259 as a proportion. This
-number is perhaps a natural way of summarising the figures if you are
+number is a natural way of summarising the figures if you are
 submitting your paper and wish to know an estimate of what the
 probability is that your paper would have different decisions according
 to the different committees. 
@@ -257,8 +257,10 @@ consistent accepts to consistent rejects, or the agreed accept rate,
   \end{itemize}
 \item
   \emph{agreed accept rate} = 22/101 = \textbf{0.218}
-\item
+  \begin{itemize}
+    \item
   ratio between agreed accepted papers and agreed rejected papers.
+  \end{itemize}
 \end{itemize}
 
 \subsection{Reaction After Experiment}\label{reaction-after-experiment}
@@ -297,7 +299,7 @@ these numbers we discuss some context for them.
 
 \subsection{A Random Committee @ 25\% acceptance rate}\label{a-random-committee-25}
 The first context we can place around the numbers is what would have
-happened at the `Random Conference' where we simply accept a quarter of
+happened at the `random conference' where we simply accept a quarter of
 papers at random. In this NeurIPS the expected numbers of accepts would
 then have been given as in Table \ref{table-random-committee}.We consider a random committee that has a 25\% accept rate as it makes the numbers easier to remember and it's close to the observed accept rate of 23\%.
 
@@ -325,31 +327,9 @@ been performed at random and only around two thirds as many inconsistent
 decisions were made as would have been expected if decisions were made
 at random. However, we should treat all these figures with some
 skepticism until we've performed some estimate of the uncertainty
-associated with them.
+associated with them (see Appendix~\ref{uncertainty-accept-rate}).
 
-\subsection{Stats for Random
-Committee}\label{stats-for-random-committee}
 
-\begin{itemize}
-\tightlist
-\item
-  For random committee we expect:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \emph{inconsistency} of 3 in 8 (37.5\%)
-  \item
-    \emph{accept precision} of 1 in 4 (25\%)
-  \item
-    \emph{reject precision} of 3 in 4 (75\%) and a
-  \item
-    \emph{agreed accept rate} of 1 in 10 (10\%).
-  \end{itemize}
-\end{itemize}
-
-Actual committee's accept precision markedly better with 50\% accept
-precision.
 
 \section{Reviewer Calibration}
 \label{app:reviewer-calibration}
@@ -384,10 +364,12 @@ f_i \sim N(\mu, \alpha_f)
 this now reduces us to \(m\)+3 parameters. However, we only have
 approximately \(4m\) observations (4 papers per reviewer) so parameters
 may still not be that well determined (particularly for those reviewers
-that have only one review). We, therefore, finally, assume that reviewer
-offset is normally distributed with zero mean, \[
+that have only one paper to assess). We assume that reviewer
+offset is normally distributed with zero mean, 
+\[
 b_j \sim N(0, \alpha_b),
-\] leaving us only four parameters: \(\mu\), \(\sigma^2\), \(\alpha_f\)
+\] 
+leaving us only four parameters: \(\mu\), \(\sigma^2\), \(\alpha_f\)
 and \(\alpha_b\). Combined together these three assumptions imply that
 \[
 \mathbf{y} \sim N(\mu \mathbf{1}, \mathbf{K}),
@@ -398,7 +380,7 @@ by
 \[
 k(i,j; k,l) = \delta_{i,k} \alpha_f + \delta_{j,l} \alpha_b + \delta_{i, k}\delta_{j,l} \sigma^2,
 \] 
-where \(i\) and \(j\) are the index of first paper and reviewer and
+where $\delta_{\cdot,\cdot}$ is Kronecker delta function, \(i\) and \(j\) are the index of first paper and reviewer, and
 \(k\) and \(l\) are the index of second paper and reviewer. The mean is
 easily estimated by maximum likelihood and is given as the mean of all
 scores.
@@ -412,9 +394,8 @@ which we rewrite to give two ratios: offset/signal ratio,
 k(i,j; k,l) = \alpha_f\left(\delta_{i,k}  + \delta_{j,l} \hat{\alpha}_b + \delta_{i, k}\delta_{j,l} \hat{\sigma}^2\right).
 \] 
 The advantage of this parameterization is it allows us to optimize
-\(\alpha_f\) directly (with a fixed-point equation) and it will be very
-well determined. This leaves us with two free parameters, that we can
-explore on the grid. It is in these parameters that we expect the
+\(\alpha_f\) with a fixed-point equation. This leaves us with two free parameters, that we can
+explore on a grid. It is in these parameters that we expect the
 remaining underdetermindness of the model. We expect \(\alpha_f\) to be
 well determined because the negative log likelihood is now 
 \[
@@ -439,7 +420,9 @@ reviewer offset and diversity. For each parameter choice, optimize to
 find \(\alpha_f\) and then evaluate the likelihood. Worst case this will
 require us inverting \(\hat{\mathbf{K}}\), but if the reviewer paper
 groups are disconnected, it can be done a lot quicker.  The full
-analysis is described in a blog post and accompanying Jupyter notebook.\footnote{\url{https://inverseprobability.com/2014/08/02/reviewer-calibration-for-nips}}. .
+analysis is described in a blog post and accompanying Jupyter notebook.\footnote{\url{https://inverseprobability.com/2014/08/02/reviewer-calibration-for-nips}}.  The parameters of the fitted model are given in the main text in
+Table \ref{table-fitted-calibration-parameters}.
+
 
 \section{Uncertainty: Accept Rate}\label{uncertainty-accept-rate}
 
@@ -488,7 +471,7 @@ higher for duplicated papers it still falls well within the
 probability mass of the binomial distribution implied by a 0.23 accept rate.
 
 Note that Area Chairs knew which papers were duplicates, whereas
-reviewers did not. Whilst we stipulated that duplicate papers should not
+reviewers did not. While we stipulated that duplicate papers should not
 be any given special treatment, we cannot discount the possibility that
 Area Chairs may have given slightly preferential treatment to duplicate
 papers.
@@ -553,9 +536,9 @@ is, \begin{align*}
 \mathbf{k}|\mathbf{p} \sim \text{mult}(\mathbf{p}).
 \end{align*} Due to the conjugacy the posterior is tractable and easily
 computed as a Dirichlet (see
-e.g.~\cite{Gelman-bayesian13},
+e.g.~\cite{Gelman-bayesian13}),
 where the parameters of the Dirichlet are given by the original vector
-from the Dirichlet prior plus the counts associated with each outcome.
+from the Dirichlet prior plus the counts associated with each outcome,
 \[
 \mathbf{p}|\mathbf{k}, \boldsymbol{\alpha} \sim \text{Dir}(\boldsymbol{\alpha} + \mathbf{k})
 \] The mean probability for each outcome is then given by, \[
@@ -623,7 +606,7 @@ that single question; it doesn't attempt to give answers on what the
 reasons for that inconsistency are and how it may be reduced. The
 additional maths was needed only to give a sense of the uncertainty in
 the figures. That uncertainty arises due to the limited number of papers
-in the experiment.
+in the experiment. The simulation in Section~\ref{sec:simulation-of-subjective-scoring} gives an alternative analysis based on the subjective component of the reviewer quality score.
 
 \section{Effect of Late Reviews}
 \label{app:effect-of-late-reviews}
@@ -633,15 +616,13 @@ Conference reviews do not all come in at the requested time, the cumulative numb
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.70\textwidth]{diagrams/neurips/review-count.pdf}
-\caption{Cumulative count of number of received reviews over time.}
+\caption{Cumulative count of number of received reviews across July and August. Review submission deadline was 21st July.}
 \label{review-count}
 \end{figure}
 
 The Program Committee worked hard to ensure that all  papers had three reviews
-before the start of the rebuttal. This next plot shows the numbers of
-papers that had less than three reviews across the review period. In Figure \ref{number-of-reviews-over-time} we show the  overall statistics of what the count of reviewers per
-paper were, we plot mean, maximum, median, and minimum over time.
-
+before the start of the rebuttal.  In Figure \ref{number-of-reviews-over-time}  we show the  overall statistics of what the count of reviewers per
+paper were, we plot mean, maximum, median, and minimum over time. 
 
 \begin{figure}[htb]
 \centering
@@ -651,10 +632,8 @@ paper were, we plot mean, maximum, median, and minimum over time.
 \label{number-of-reviews-over-time}
 \end{figure}
 
-Then in Figure \ref{paper-short-reviews} we highlight how many papers had less than
-3 reviewers over time. In this plot you can see that by the time
-rebuttal starts almost all papers have three reviewers.
-
+In Figure~\ref{paper-short-reviews} we show the number of
+papers that had less than three reviews across the review period.
 
 \begin{figure}[htb]
 \centering
@@ -664,7 +643,7 @@ rebuttal starts almost all papers have three reviewers.
 \label{paper-short-reviews}
 \end{figure}
 
-However, while observing the late reviewer scores coming in, the correlation between the two committees reduced (see~\ref{correlation-duplicate-reviews}). Correlation starts high, but it drops as reviewers were chased to submit, then it recovers during the reviewer discussion period. This trend triggered a question: are late reviewers damaging the reviewing process?
+However, while observing the late reviewer scores coming in, the correlation between the two committees reduced (see Figure~\ref{correlation-duplicate-reviews}). Correlation starts high, but it drops as reviewers were chased to submit, then it recovers during the reviewer discussion period. This trend triggered a question: are late reviewers damaging the reviewing process?
 
 \begin{figure}[htb]
 \centering
@@ -675,7 +654,7 @@ However, while observing the late reviewer scores coming in, the correlation bet
 \label{correlation-duplicate-reviews}
 \end{figure}
 
-These changes in correlation were point estimates based on a relatively low number of papers. To get a sense of the uncertainty overtime, we computed bootstrap estimates of the correlation over time. These estimates are shown in Figure \ref{correlation-duplicate-reviews}.
+These changes in correlation were point estimates based on a relatively low number of papers. To get a sense of the uncertainty overtime, we computed bootstrap estimates of the correlation over time. These estimates are shown in Figure~ \ref{correlation-duplicate-reviews-bootstrap}.
 
 \begin{figure}[htb]
 \centering
@@ -828,7 +807,7 @@ assessment.
 \section{Correlation of Quality Scores and
 Citation}\label{correlation-of-quality-scores-and-citation}
 
-To revisit the NeurIPS experiment, we traced the fate of accepted papers all the rejected papers that we could find through searching on Semantic Scholar. This allowed us to associate each paper with a citation count. In this section we explore correlation between those citation counts and the scores that reviewers gave the papers back in 2014.
+To revisit the NeurIPS experiment, we traced the fate of accepted papers and all the rejected papers that we could find through searching on Semantic Scholar. This allowed us to associate each paper with a citation count. In this section we explore correlation between those citation counts and the scores that reviewers gave the papers back in 2014.
 
 First of all, we plot the correlation between average quality score and the citation count for all papers where we could trace their fate (accepted and rejected). This is shown in  Figure~\ref{figure-citations-vs-average-calibrated-quality-all}. Rejected papers are given as crosses,
 accepted papers are given as dots. We include all papers, whether
@@ -858,7 +837,7 @@ Conversely, looking at rejected papers only, we do see a correlation (Figure~\re
 with higher scoring papers achieving more citations on average. This,
 combined with the lower average number of citations in the rejected
 paper group, alongside their lower average scores, explains the
-correlation we originally observed.
+correlation we observed when analyzing the two groups of papers together.
 
 Welling and Ghahramani introduced an ``impact'' score in NeurIPS 2013,
 we might expect the impact score to show correlation. And indeed,
