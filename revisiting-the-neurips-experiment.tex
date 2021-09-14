@@ -146,16 +146,15 @@ facets of a paper could be better assessed with clearer scoring
 criteria. This would give program chairs more flexibility in guiding
 the nature of the conference.
 
-\section{The NeurIPS Experiment}
 
 Before discussing our experiments, we will start with a brief
 reminder of the NeurIPS experiment.
 
-\hypertarget{review-of-the-conference-and-the-experiment}{%
-\subsection{Review of the Conference and the
-Experiment}\label{review-of-the-conference-and-the-experiment}}
+\section{The NeurIPS Experiment}
+\label{review-of-the-conference-and-the-experiment}
+
 The NeurIPS 2014 conference was held in Montreal with 2,581 attendees at the
-conference and associated workshops and tutorials. 
+conference, associated workshops, and tutorials. 
 
 At NeurIPS 2014, each paper was assigned to an Area Chair and at least
 three reviewers. Final decisions about papers were made by video
@@ -163,7 +162,7 @@ conference calls between Area Chairs and the Program Chairs. For more details
 on the reviewing process and the timelines involved see
 Appendix~\ref{app:review-details} in the supplementary material. 
 
-The Program Chairs of the 2014 conference decided to test the
+As Program Chairs of the 2014 conference we decided to test the
 consistency of the peer review process through a randomised experiment.
 From the 1,678 submissions they chose about 10\% or 170 papers to undergo review by
 two separate committees. Each committee was formed by separating the
@@ -194,27 +193,27 @@ predictions from Scicast is below.
 \begin{center}
 \includegraphics[width=0.40\textwidth]{diagrams/neurips/scicast-forecast.png}
 \end{center}
-\caption{Summary forecast from those that responded to a scicast question about how consistent the decision making was.}
+\caption{Summary forecast from those that responded to a scicast question about how consistent the decision making was likely to be.}
 \label{scicast-forecast}
 \end{figure}
 
-As can be seen, the voting population had little faith in the
+As can be seen, the voting population also perceived that there was likely some inconsistency in the 
 reviewing process and the median vote was around 30\%.
 
-\section{Results}
+\subsection{Results}
 
-The results of this process are summarised in Table
+The results of this NeurIPS Experiment are summarised in Table
 \ref{table-neurips-experiment-results}. Four papers had to
 be withdrawn or were rejected without completing the review process
 resulting in 166 papers completing the experiment. Of those the two committees disagreed
-on 43 or 25.0\% of the papers.
+on 43 or 25.0\% of the papers, which is broadly in line with the speculations above.
 
 \begin{table}[htb]
 \caption{Table showing the results from the two committees as a
   confusion matrix. Four papers were rejected or withdrawn without
   review resulting in a final of 166 papers.}
 \label{table-neurips-experiment-results}
-
+\centering
 \begin{tabular}{lc|c|c|}
 & & \multicolumn{2}{c}{Committee 1} \\
 & & Accept & Reject \\ \hline
@@ -224,7 +223,7 @@ on 43 or 25.0\% of the papers.
 \end{table}
 
 Another way of characterizing the outcome is to say that of the papers
-accepted. the 'other' committee would have only accepted about 50\% of them:
+accepted. the `other' committee would have only accepted about 50\% of them:
 of the 43 accepted papers by Committee 1, Committee 2 only accepted
 22, or 51\%, while of the 44 accepted papers by Committee 2, Committee
 1 only accepted 22 or 50\% of them. That is, if the conference
@@ -232,7 +231,7 @@ reviewing had been run with a different committee, only half of the
 papers presented at the conference would have been the same. For other
 ways to characterize the result table, see Appendix~\ref{app:neurips-experiment-results}.
 
-A reviewer verdict is summarized by the 'Quantitative Evaluation'
+A reviewer verdict is summarized by the `Quantitative Evaluation'
 score, see Appendix~\ref{app:review-details} on a 10 point Likerts
 scale.  This score is often calibrated per reviewer to account for
 difference in reviewer interpretation, see
@@ -266,29 +265,19 @@ they accepted. As quickly pointed out by many of the blog posts listed
 below, the committees acted better than random, but not
 significantly. The NeurIPS conference typically has an acceptance rate
 of 23.5\% in which case two random committees would be in agreement on
-accepted papers only of the order {\tt accept-accept/accept} or in
-23.5\% of the accepted papers. As such the committees acted better than
-random, though maybe not as significantly as hoped for.
+paper decisions only of the order 64\% of the time, or for accepted papers only 
+23.5\% of the time. As such the committees acted better than
+random, though maybe not as significantly as some may have hoped for (see also Appendix~\ref{random-committee-outcomes}).
 
-\begin{itemize}
-\item
-  Public reaction after experiment is documented in a blog post.\footnote{\url{https://inverseprobability.com/2015/01/16/blogs-on-the-nips-experiment}}
+Public reaction after experiment is documented in a blog post from the time\footnote{\url{https://inverseprobability.com/2015/01/16/blogs-on-the-nips-experiment}} and it seems fair to summarize that some were surprised at the level of inconsistency (despite the pre-experiment speculations falling roughly in line with eventual outcome). The conference itself was run in a very open way, code\footnote{\url{https://github.com/lawrennd/nips2014}} and blog
+  posts\footnote{\url{https://inverseprobability.com/2014/12/16/the-nips-experiment}} are all available documenting the decision process.  
 
-\item
-  NeurIPS was run in a very open way:
-  code\footnote{\url{https://github.com/lawrennd/nips2014}} and
-  blog
-  posts\footnote{\url{https://inverseprobability.com/2014/12/16/the-nips-experiment}} all available.
-\item
-  Reaction triggered by a blog post from Eric Price.\footnote{\url{http://blog.mrtz.org/2014/12/15/the-nips-experiment.html}}
-\end{itemize}
-
-Much of the discussion speculates on the number of consistent accepts in
-the process (using the main conference accept rate as a proxy). It
-therefore produces numbers that don't match ours above. This is because
+Particular public reaction triggered by a blog post from Eric Price.\footnote{\url{http://blog.mrtz.org/2014/12/15/the-nips-experiment.html}} where much of the discussion speculates on the number of consistent accepts in
+the process (using the main conference accept rate as a proxy). As a result the analysis
+ produces numbers that don't match ours above (see also Appendix~\ref{app:neurips-experiment-results}). This is because
 the computed accept rate of the individual committees is different from
 that of the main conference. This could be due to a bias for the
-duplicated papers, or statistical sampling error. We look at these
+duplicated papers, but as we show in Appendix~\ref{uncertainty-accept-rate} this difference falls well within statistical sampling error. We look at these
 questions below. First, to get the reader primed for thinking about
 these numbers we discuss some context for placing these numbers.
 
@@ -309,7 +298,7 @@ own devising. For example, John Platt who chaired the conference in
 2006, used a regularised least squares model, this model is written up
 in \cite{Platt-calibration12}. In 2013, Zoubin Ghaharamani
 and Max Welling used a Bayesian extension of this model
-\cite{Ge-bayesian15}. Corinna Cortes and Neil Lawrence also used a
+\cite{Ge-bayesian15}. See also a more recently proposed approach to calibration from \cite{MacKay-calibration17}Corinna Cortes and Neil Lawrence also used a
 Bayesian variant of the Platt-Burges model, but one that was
 formulated as a Gaussian process. We give the details of this approach
 in the supplementary material (Appendix~\ref{app:reviewer-calibration}),
@@ -360,7 +349,7 @@ of $f_i + \epsilon_{i,j}$. Note that the calibrated reviewer score
 \emph{includes} the reviewer's \emph{subjective} opinion about the
 paper. See Appendix~\ref{app:reviewer-calibration} for more details
 on the model as well as code for fitting the model in GPy
-\cite{Gpy-2012}. The parameters of the fitted model are given in
+\citep{Gpy-2012}. The parameters of the fitted model are given in
 Table \ref{table-fitted-calibration-parameters}.
 
 \begin{table}[htb]
@@ -535,10 +524,10 @@ give pause for thought.
 
 Does this mean that reviewers can't judge what papers are likely to be
 influential? Or is something else going on? In 2013 Welling and
-Ghahramani introduced a separate scoring indicator (see
-Appendix~\ref{app:review-details}). 
+Ghahramani introduced a separate scoring indicator. 
 Perhaps the answer to our quandary in the quality
-scores lies in the phrasing of the question they introduced.
+scores lies in the phrasing of the question they introduced ((see also
+Appendix~\ref{app:review-details}).
 \begin{quote}
   Independently of the Quality Score above, this is your opportunity to
 identify papers that are very different, original, or otherwise
@@ -784,6 +773,7 @@ reviewers.
 \bibliographystyle{plainnat}
 \bibliography{revisiting-the-neurips-experiment}
 \onecolumn
+\aistatstitle{Supplementary Material for Inconsistency in Peer Review}
 \appendix
 \input{the-neurips-experiment.include}
 \end{document}
