@@ -51,7 +51,9 @@
 %\runningauthor{Surname 1, Surname 2, Surname 3, ...., Surname n}
 
 \twocolumn[
-\aistatstitle{Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment}
+\aistatstitle{Inconsistency in Conference Peer Review: 
+
+Revisiting the 2014 NeurIPS Experiment}
 \aistatsauthor{Neil D. Lawrence \And Corinna Cortes}
 \aistatsaddress{University of Cambridge \And  Google Research, New York}
 ]
@@ -123,15 +125,15 @@ proxy for paper impact,\footnote{There are problems with using
   e.g.\ \cite{Neylon-article09} for a discussion, but they have the
   advantage of being an objective, community driven measure. Seven
   years having passed since publication, and the papers have had a
-  chance to establish themselves.} We collected citation counts for
-each of the around 400 published paper from Semantic
-Scholar,\footnote{\url{https://www.semanticscholar.org/}} but found no
+  chance to establish themselves.} we collected citation counts for
+each of the around 400 published papers from Semantic
+Scholar,\footnote{\url{https://www.semanticscholar.org/}} but find no
 correlation between paper quality scores and the paper's eventual
 impact. Finally, we analyse rejected papers from the conference. We
 searched Semantic Scholar for papers with similar titles by the same
 lead author in the literature allowing us to track the final outlet
 for 680 papers that were rejected by the 2014 NeurIPS conference, as
-well as their associated citation counts. For these papers we did find
+well as their associated citation counts. For these papers we do find
 correlation between quality scores and citation counts.
 
 From these analyses we conclude that inconsistency in the conference
@@ -143,6 +145,8 @@ average) in lower impact papers. In our conclusions, we argue that the different
 facets of a paper could be better assessed with clearer scoring
 criteria. This would give program chairs more flexibility in guiding
 the nature of the conference.
+
+\section{The NeurIPS Experiment}
 
 Before discussing our experiments, we will start with a brief
 reminder of the NeurIPS experiment.
@@ -171,9 +175,9 @@ experiment as they would have to write two independent author
 rebuttals. For the final conference a paper was accepted if any of the
 committees would have accepted it. 
 
-\section{Outcome Spectulations}
+\subsection{Outcome Speculations}
 
-Inconsistancy in the reviewing process can be quantified in a number
+Inconsistency in the reviewing process can be quantified in a number
 of ways. As the Program Chairs, we opted for asking the question what is the
 \% of the papers that yield *inconsistent* decisions.
 With the help of \href{http://nicolofusi.com/}{Nicolo Fusi},
@@ -259,30 +263,24 @@ There was a lot of discussion of the result, both at the
 conference and on bulletin boards since. The main topic of discussion
 was that the committees were only in agreement on around 50\% of the papers
 they accepted. As quickly pointed out by many of the blog posts listed
-below, the committes acted better than random, but not
+below, the committees acted better than random, but not
 significantly. The NeurIPS conference typically has an acceptance rate
-of 23.5\% in which case two random committes would be in agreement on
+of 23.5\% in which case two random committees would be in agreement on
 accepted papers only of the order {\tt accept-accept/accept} or in
-23.5\% of the accepted papers. As such the committes acted better than
-random, though maybe not as signifcantly as hoped for.
+23.5\% of the accepted papers. As such the committees acted better than
+random, though maybe not as significantly as hoped for.
 
 \begin{itemize}
 \item
-  Public reaction after experiment
-  \href{http://inverseprobability.com/2015/01/16/blogs-on-the-NeurIPS-experiment/}{documented
-  by Neil Lawrence}
+  Public reaction after experiment is documented in a blog post.\footnote{\url{https://inverseprobability.com/2015/01/16/blogs-on-the-nips-experiment}}
+
 \item
-  \href{http://inverseprobability.com/2014/07/01/open-data-science/}{Open
-  Data Science} (see Heidelberg Meeting)
+  NeurIPS was run in a very open way:
+  code\footnote{\url{https://github.com/lawrennd/nips2014}} and
+  blog
+  posts\footnote{\url{https://inverseprobability.com/2014/12/16/the-nips-experiment}} all available.
 \item
-  NeurIPS was run in a very open way.
-  \href{https://github.com/sods/conference}{Code} and
-  \href{http://inverseprobability.com/2014/12/16/the-NeurIPS-experiment/}{blog
-  posts by Neil Lawrence} all available!
-\item
-  Reaction triggered by
-  \href{http://blog.mrtz.org/2014/12/15/the-NeurIPS-experiment.html}{blog
-  post by Eric Price}.
+  Reaction triggered by a blog post from Eric Price.\footnote{\url{http://blog.mrtz.org/2014/12/15/the-nips-experiment.html}}
 \end{itemize}
 
 Much of the discussion speculates on the number of consistent accepts in
@@ -305,8 +303,8 @@ outcome.
 NeurIPS papers are evaluated by quality scores on a 10 point Likert
 scale (see Appendix~\ref{app:review-details}). A
 classical challenge with such scales is that they may be interpreted
-differently by different reviewers. Since the TK\cc{??} conference, NeurIPS
-chairs have often calibrated reviewer scores using scripts of their
+differently by different reviewers. Since at least 2005 conference, NeurIPS
+chairs have calibrated reviewer scores using scripts of their
 own devising. For example, John Platt who chaired the conference in
 2006, used a regularised least squares model, this model is written up
 in \cite{Platt-calibration12}. In 2013, Zoubin Ghaharamani
@@ -486,7 +484,7 @@ this section we explore how they fared in terms of their
 
 To determine the citation impact of papers, we searched for all
 accepted papers (not just the once in the experiment) from the conference on Semantic Scholar.\footnote{See
-  \href{https://www.semanticscholar.org/about}{https://www.semanticscholar.org/about}.}
+  \url{https://www.semanticscholar.org/about}.}
 The Semantic Scholar ID of the papers was recorded and we made use of
 the Semantic Scholar API to retrieve the number of citing papers. The
 citation scores were transformed into the citation impact using a
@@ -510,7 +508,7 @@ differential privacy noise (see Appendix~\ref{correlation-of-quality-scores-and-
 
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
+    \includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
   \end{center}
   \caption{Scatter plot of the citation impact (defined as
     $\log_{10}(1+\text{citations})$) against the average calibrated
@@ -556,7 +554,7 @@ the effect is small.
 
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
+    \includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
   \end{center}
   \caption{Scatter plot of the citation impact (defined as
     $\log_{10}(1+\text{citations})$) against the average impact score
@@ -571,8 +569,7 @@ the effect is small.
 
 Also note that the correlation for this score across the duplicated
 papers in the NeurIPS experiment was relatively low:\footnote{Standard
-  error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$} $0.27 \pm 0.075$
-(see Appendix~\ref{correlation-of-duplicate-papers}).
+  error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$.} $0.27 \pm 0.075$.
 
 Alongside quality and impact, reviewers are asked to provide a
 confidence score for their review. Scored on a Likert scale between 1
@@ -594,7 +591,7 @@ underlying clarity of the paper. Such clarity is also likely to have a
 downstream effect on citation impact.
 
 \begin{figure}[htb]
-\includegraphics[width=0.9\columnwidth]{diagrams/neurips/citations-vs-average-confidence-accept.pdf}
+\includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-confidence-accept.pdf}
 
 \caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the
   average confidence score for accepted papers. As in Figure~\ref{figure-citations-vs-average-calibrated-quality-accept}, data is
@@ -609,7 +606,7 @@ downstream effect on citation impact.
 More evidence for this notion of clarity comes from analysing the
 correlation of the confidence score across the two different
 committees in the NeurIPS experiment. Correlation of confidence scores
-was was $0.39 \pm 0.072$ (see Appendix~\ref{correlation-of-duplicate-papers}), giving additional evidence for
+was was $0.39 \pm 0.072$, giving additional evidence for
 the influence of clarity in the reviewers' confidence about the paper.
 
 Conferences and journals are often measured and ranked by their impact
@@ -685,7 +682,7 @@ eventual citation impact. The scatter plot is shown in Figure~\ref{figure-citati
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.90\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-reject.pdf}
+\includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-reject.pdf}
 \end{center}
 \caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the
   average calibrated quality score for rejected papers. To prevent
@@ -784,9 +781,8 @@ reviewers.
 \subsubsection*{Acknowledgements}
 
 \newpage
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{revisiting-the-neurips-experiment}
-\newpage
 \onecolumn
 \appendix
 \input{the-neurips-experiment.include}
