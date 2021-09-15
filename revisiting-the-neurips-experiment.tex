@@ -17,10 +17,11 @@
 
 % If you use natbib package, activate the following three lines:
 \usepackage[round]{natbib}
-\renewcommand{\bibname}{References}
-\renewcommand{\bibsection}{\subsubsection*{\bibname}}
+\usepackage{amsmath}
+%\renewcommand{\bibname}{References}
+%\renewcommand{\bibsection}{\subsubsection*{\bibname}}
+\usepackage[hyphens]{url}
 \usepackage{hyperref}
-
 \usepackage{todonotes}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{multirow}
@@ -242,7 +243,8 @@ scores per paper across the two independent committees. A scatter plot of these
 scores from the committees is shown in Figure~\ref{figure-calibrated-quality-correlation}, the Pearson correlation
 was computed as $\rho=0.55$. 
 \begin{figure}[htb]
-\includegraphics[width=0.9\columnwidth]{diagrams/neurips/calibrated-quality-correlation.pdf}
+\centering
+\includegraphics[width=0.45\textwidth]{diagrams/neurips/calibrated-quality-correlation.pdf}
 
 \caption{Correlation between mean calibrated reviewer scores per paper
   across the two
@@ -406,7 +408,8 @@ our model simulation model is a plausible starting point for exploring
 the expected consistency of a given reviewing set up.
 
 \begin{figure}[htb]
-\includegraphics[width=0.90\columnwidth]{diagrams/neurips/accept-precision-vs-accept-rate.pdf}
+\centering
+\includegraphics[width=0.45\textwidth]{diagrams/neurips/accept-precision-vs-accept-rate.pdf}
 
 \caption{Plot of the accept rate versus the accept consistency of the
   conference for 50\% subjectivity in a simulation of the conference
@@ -488,7 +491,7 @@ differential privacy noise (see Appendix~\ref{correlation-of-quality-scores-and-
 
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
+    \includegraphics[width=0.5\textwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
   \end{center}
   \caption{Scatter plot of the citation impact (defined as
     $\log_{10}(1+\text{citations})$) against the average calibrated
@@ -534,7 +537,7 @@ the effect is small.
 
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
+    \includegraphics[width=0.5\textwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
   \end{center}
   \caption{Scatter plot of the citation impact (defined as
     $\log_{10}(1+\text{citations})$) against the average impact score
@@ -571,7 +574,8 @@ underlying clarity of the paper. Such clarity is also likely to have a
 downstream effect on citation impact.
 
 \begin{figure}[htb]
-\includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-confidence-accept.pdf}
+\centering
+\includegraphics[width=0.5\textwidth]{diagrams/neurips/citations-vs-average-confidence-accept.pdf}
 
 \caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the
   average confidence score for accepted papers. As in Figure~\ref{figure-citations-vs-average-calibrated-quality-accept}, data is
@@ -648,7 +652,8 @@ deadline one month after. A Sankey diagram showing where papers
 submitted to the conference ended up is shown in Figure~\ref{figure-where-do-neurips-papers-go}.
 
 \begin{figure}[htb]
-\includegraphics[width=0.9\columnwidth]{diagrams/neurips/where-do-neurips-papers-go.pdf}
+\centering
+\includegraphics[width=0.5\textwidth]{diagrams/neurips/where-do-neurips-papers-go.pdf}
 
 \caption{Sankey diagram showing the flow of NeurIPS papers through the system from submission to eventual publication.}
 \label{figure-where-do-neurips-papers-go}
@@ -661,7 +666,7 @@ eventual citation impact. The scatter plot is shown in Figure~\ref{figure-citati
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-reject.pdf}
+\includegraphics[width=0.5\textwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-reject.pdf}
 \end{center}
 \caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the
   average calibrated quality score for rejected papers. To prevent
@@ -753,11 +758,13 @@ reviewers.
 
 \subsubsection*{Acknowledgements}
 
-\newpage
+We would like to thank the authors, reviewers, Area Chairs of NeurIPS 2014 for not just carrying the writing and reviewing burden, but also the additional work load of reviewing some of the papers twice. We also thank Max Welling and Zoubin Ghahramani, the 2014 General Chairs, as well as the NeurIPS Board for supporting us in the experiment. Finally, we thank the maintainers of CMT for accommodating the experiment with the system and the Semantic Scholar team at AI2 for making available an API for the important work of exploring the impact of academic publishing.
+
+%\newpage
 \bibliographystyle{plainnat}
 \bibliography{revisiting-the-neurips-experiment}
-\onecolumn
-\aistatstitle{Supplementary Material for Inconsistency in Peer Review}
+%\onecolumn
+%\aistatstitle{Supplementary Material for Inconsistency in Peer Review}
 \appendix
 \input{the-neurips-experiment.include}
 \end{document}
