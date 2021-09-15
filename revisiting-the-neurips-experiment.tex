@@ -1,0 +1,756 @@
+\documentclass[twoside]{article}
+
+\usepackage{aistats2021}
+% If your paper is accepted, change the options for the package
+% aistats2021 as follows:
+%
+%\usepackage[accepted]{aistats2021}
+%
+% This option will print headings for the title of your paper and
+% headings for the authors names, plus a copyright note at the end of
+% the first column of the first page.
+
+% If you set papersize explicitly, activate the following three lines:
+%\special{papersize = 8.5in, 11in}
+%\setlength{\pdfpageheight}{11in}
+%\setlength{\pdfpagewidth}{8.5in}
+
+% If you use natbib package, activate the following three lines:
+\usepackage[round]{natbib}
+\renewcommand{\bibname}{References}
+\renewcommand{\bibsection}{\subsubsection*{\bibname}}
+\usepackage{hyperref}
+
+\usepackage{todonotes}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{multirow}
+\usepackage{textcomp}
+\usepackage{fancyvrb}
+\newcommand{\ignore}[1]{}
+\newcommand\cc[1]{{\color{red}#1}}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% If you use BibTeX in apalike style, activate the following line:
+%\bibliographystyle{apalike}
+
+\begin{document}
+
+% If your paper is accepted and the title of your paper is very long,
+% the style will print as headings an error message. Use the following
+% command to supply a shorter title of your paper so that it can be
+% used as headings.
+%
+%\runningtitle{I use this title instead because the last one was very long}
+
+% If your paper is accepted and the number of authors is large, the
+% style will print as headings an error message. Use the following
+% command to supply a shorter version of the authors names so that
+% they can be used as headings (for example, use only the surnames)
+%
+%\runningauthor{Surname 1, Surname 2, Surname 3, ...., Surname n}
+
+\twocolumn[
+\aistatstitle{Inconsistency in Conference Peer Review: 
+
+Revisiting the 2014 NeurIPS Experiment}
+\aistatsauthor{Neil D. Lawrence \And Corinna Cortes}
+\aistatsaddress{University of Cambridge \And  Google Research, New York}
+]
+
+\begin{abstract}
+    In this paper we revisit the 2014 NeurIPS experiment that examined
+inconsistency in conference peer review. We determine that 50\% of the variation
+in reviewer quality scores was subjective in origin. Further, with seven years
+passing since the experiment we find that for \emph{accepted} papers,
+there is no correlation between quality scores and impact of the paper
+as measured as a function of citation count. We trace the fate of
+rejected papers, recovering where these papers were eventually
+published. For these papers we find a correlation between quality scores
+and impact. We conclude that the reviewing process for the 2014
+conference was good for identifying poor papers, but poor for
+identifying good papers. We give some suggestions for improving the
+reviewing process but also warn against removing the subjective element.
+Finally, we suggest that the real conclusion of the experiment is that
+the community should place less onus on the notion of `top-tier
+conference publications' when assessing the quality of individual
+researchers.
+\end{abstract}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+The NeurIPS conference is one of the premier conferences in machine
+learning.  The papers presented at this conference have
+proven to be highly influential including breakthrough papers in
+supervised and unsupervised learning, structure prediction, etc.. They ,
+provide theoretical, algorithmical and experimental justification
+for the proposed techniques. These ideas have gone on to have widespread
+societal impact.
+
+Since around 2010, the increased interest in AI has
+significantly increased the size of the conference and already in
+2014, questions around the quality of the reviewing process in
+connection with this increased load on reviewers had been raised.
+
+In 2014 as Program Chairs of the NeurIPS conference, we implemented the NeurIPS experiment. The experiment
+was designed to assess the consistency of the conference peer
+reviewing process. From the conference 10\% of the papers were
+randomly chosen to be reviewed by two independent program
+committees. The objective was to determine if decision making was
+consistent across these two committees.  The results showed that the
+decisions between the two committees was better than random, but still
+surprised the community by how low it was.  A particular focus of community concern was
+the fact that the two committees were 
+very inconsistent about which papers were selected to appear at the
+conference, so that if the review process had been independently
+rerun, about half the papers published at the conference would have
+been different.
+
+We revisit the 2014 conference data and explore these numbers further
+in three ways. First, we use the fact that reviewer scores underwent a
+calibration process during the conference. This process was focused on
+eliminating bias in reviewer scale interpretation, but it also
+quantifies the subjectivity of individual reviewer scores. Through a
+simulation study we demonstrate that this subjectivity is at the
+heart of the inconsistency. Second, we explore whether these scores
+correlated with paper citation scores.  Taking citation scores as a
+proxy for paper impact,\footnote{There are problems with using
+  citation scores as a way of assessing impact, see
+  e.g.\ \cite{Neylon-article09} for a discussion, but they have the
+  advantage of being an objective, community driven measure. Seven
+  years having passed since publication, and the papers have had a
+  chance to establish themselves.} we collected citation counts for
+each of the around 400 published papers from Semantic
+Scholar.\footnote{\url{https://www.semanticscholar.org/}} We find no
+correlation between paper quality scores and the paper's eventual
+impact. Finally, we analyse rejected papers from the conference. We
+searched Semantic Scholar for papers in the literature with similar titles by the same
+lead author allowing us to track the final outlet
+for 680 papers that were rejected by the 2014 NeurIPS conference, as
+well as their associated citation counts. For these papers we do find
+correlation between quality scores and citation counts.
+
+From these analyses we conclude that inconsistency in the conference
+reviewing process is a consequence of the subjectivity in reviewer
+assessments. And that in the high-scoring range, reviewer quality
+scores are not a good proxy for citation impact. However, reviewers
+seem better at identifying weaker papers: low-scoring papers resulted (on
+average) in lower impact papers. In our conclusions, we argue that the different
+facets of a paper could be better assessed with clearer scoring
+criteria. This would give program chairs more flexibility in guiding
+the nature of the conference.
+
+
+Before discussing our experiments, we will start with a brief
+reminder of the NeurIPS experiment.
+
+\section{The NeurIPS Experiment}
+\label{review-of-the-conference-and-the-experiment}
+
+The NeurIPS 2014 conference was held in Montreal with 2,581 attendees at the
+conference, associated workshops, and tutorials. 
+
+At NeurIPS 2014, each paper was assigned to an Area Chair and at least
+three reviewers. Final decisions about papers were made by video
+conference calls between Area Chairs and the Program Chairs. For more details
+on the reviewing process and the timelines involved see
+Appendix~\ref{app:review-details} in the supplementary material. 
+
+As Program Chairs of the 2014 conference we decided to test the
+consistency of the peer review process through a randomised experiment.
+From the 1,678 submissions we chose about 10\% or 170 papers to undergo review by
+two separate committees. Each committee was formed by separating the
+reviewing body randomly into two groups, while the Area Chairs were
+split manually to ensure proper coverage of expertise in the two bodies.
+Each selected paper went through the review process
+independently. Authors were notified if their paper was in the
+experiment as they would have to write two independent author
+rebuttals. For the final conference a paper was accepted if any of the
+committees would have accepted it. 
+
+\subsection{Outcome Speculations}
+
+Inconsistency in the reviewing process can be quantified in a number
+of ways. As the Program Chairs, we opted for asking the question what is the
+\% of the papers that yield \emph{inconsistent} decisions.
+With the help of Nicol\'o Fusi, Charles Twardy and
+the Scicast team we launched a
+Scicast question about a week before the results were revealed.  The comment
+thread for that question had a lively discussion before the
+meeting. Unfortunately, Scicast no longer exists so that information is lost, but we have the box plot summary of predictions as shown in Figure~\ref{scicast-forecast}. 
+
+We also made our own predictions.  Corinna forecast this figure would be
+25\% and Neil forecast it would be 20\%. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{diagrams/neurips/scicast-forecast.png}
+\end{center}
+\caption{Summary forecast from those that responded to a scicast question about how consistent the decision making was likely to be.}
+\label{scicast-forecast}
+\end{figure}
+
+As can be seen, the voting population also perceived that there was likely some inconsistency in the 
+reviewing process and the median vote was around 30\%.
+
+\subsection{Results}
+
+The results of this NeurIPS Experiment are summarised in Table
+\ref{table-neurips-experiment-results}. Four papers had to
+be withdrawn or were rejected without completing the review process
+resulting in 166 papers completing the experiment. Of those the two committees disagreed
+on 43 or 25.0\% of the papers, which is broadly in line with the speculations above.
+
+\begin{table}[htb]
+\caption{Table showing the results from the two committees as a
+  confusion matrix. Four papers were rejected or withdrawn without
+  review resulting in a final of 166 papers.}
+\label{table-neurips-experiment-results}
+\centering
+\begin{tabular}{lc|c|c|}
+& & \multicolumn{2}{c}{Committee 1} \\
+& & Accept & Reject \\ \hline
+\multirow{2}{*}{Committee 2} & Accept & 22 & 22 \\
+& Reject & 21 & 101 
+\end{tabular}
+\end{table}
+
+Another way of characterizing the outcome is to say that of the papers
+accepted, the `other' committee would have only accepted about 50\% of them:
+of the 43 accepted papers by Committee 1, Committee 2 only accepted
+22, or 51\%, while of the 44 accepted papers by Committee 2, Committee
+1 only accepted 22 or 50\% of them. That is, if the conference
+reviewing had been run with a different committee, only half of the
+papers presented at the conference would have been the same. For other
+ways to characterize the result table, see Appendix~\ref{app:neurips-experiment-results}.
+
+In the conference review process, the eviewer verdict is summarized by the `Quantitative Evaluation'
+score, see Appendix~\ref{app:review-details} on a 10 point Likert
+scale.  This score is often calibrated per reviewer to account for
+difference in reviewer interpretation, see
+Section~\ref{sec:calibration}. We looked at the correlation between
+the mean calibrated review
+scores per paper across the two independent committees. A scatter plot of these
+scores from the committees is shown in Figure~\ref{figure-calibrated-quality-correlation}, the Pearson correlation
+was computed as $\rho=0.55$. 
+\begin{figure}[htb]
+\includegraphics[width=0.9\columnwidth]{diagrams/neurips/calibrated-quality-correlation.pdf}
+
+\caption{Correlation between mean calibrated reviewer scores per paper
+  across the two
+  independent committees. Standard error on the correlation for
+  $n=166$ papers and Gaussian assumptions is $s_r = 0.065$.}
+\label{figure-calibrated-quality-correlation}
+\end{figure}
+
+During the experiment, the timing of submitted reviews was also
+tracked. There is evidence that reviews received after the review submission
+deadline, were shorter, gave higher quality scores but with lower
+confidence (see Appendix~\ref{app:effect-of-late-reviews}), but there
+was insufficient power in the experiment to determine whether this had
+a significant effect on the correlation across the program committees.
+
+\section{Public Response}
+There was a lot of discussion of the result, both at the
+conference and on bulletin boards since. The main topic of discussion
+was that the committees were only in agreement on around 50\% of the papers
+they accepted. As quickly pointed out by many of the blog posts listed
+below, the committees acted better than random, but not by a very large margin. The NeurIPS conference typically has an acceptance rate
+of 23.5\% in which case two random committees would be in agreement on
+paper decisions only of the order 64\% of the time, or for accepted papers only 
+23.5\% of the time. See Appendix~\ref{random-committee-outcomes} for a comparison of the random committee with the experiment result.
+
+Public reaction after experiment is documented in a blog post from the time\footnote{\url{https://inverseprobability.com/2015/01/16/blogs-on-the-nips-experiment}} and it seems fair to summarize that some were surprised at the level of inconsistency (despite the pre-experiment speculations falling roughly in line with eventual outcome). The conference itself was run in a very open way, code\footnote{\url{https://github.com/lawrennd/nips2014}} and blog
+  posts\footnote{\url{https://inverseprobability.com/2014/12/16/the-nips-experiment}} are all available documenting the decision process.  
+
+Particular public reaction was triggered by a blog post from Eric Price.\footnote{\url{http://blog.mrtz.org/2014/12/15/the-nips-experiment.html}} where much of the discussion speculates on the number of consistent accepts in
+the process (using the main conference accept rate as a proxy). 
+
+\section{Analysis}
+Having given an overview of the experiment, we now follow up with our
+three separate treatments of the results. First we will explore the
+relationship between the conference calibration and the experimental
+outcome.
+
+\subsection{Reviewer Calibration}
+\label{sec:calibration}
+NeurIPS papers are evaluated by quality scores on a 10 point Likert
+scale (see Appendix~\ref{app:review-details}). A
+classical challenge with such scales is that they may be interpreted
+differently by different reviewers. Since at least 2005, NeurIPS
+chairs have calibrated reviewer scores using scripts of their
+own devising. For example, John Platt who chaired the conference in
+2006, used a regularised least squares model \citep{}{Platt-calibration12}. In 2013, Zoubin Ghaharamani
+and Max Welling used a Bayesian extension of this model
+\citep{Ge-bayesian15}. More recently, outside the NeurIPS community, \cite{MacKay-calibration17} have proposed a Bayesian approach that takes confidence scores into account. 
+
+Like Welling and Ghahramani, we also used a Bayesian variant of the Platt-Burges model, but one that was
+formulated as a Gaussian process. We give the details of this approach
+in the supplementary material (Appendix~\ref{app:reviewer-calibration}),
+but in essence the core of the model is as follows. Each review score
+is decomposed into three parts,
+$$
+y_{i,j} = f_i + b_j + \epsilon_{i, j},
+$$
+where $y_{i,j}$ is the score from the $j$th reviewer for the $i$th
+paper. The score is then decomposed into $f_i$ which is the
+\emph{objective} quality of the $i$th paper, i.e.\ it represents the
+portion of the score that is common to all the reviewers. The term
+$b_j$ is specific to the $j$th reviewer and it represents an offset or
+bias associated with the $j$th reviewer. The idea being that different
+reviewers interpret the scale differently. Finally $\epsilon_{i,j}$ is
+a \emph{subjective} estimate of the quality of paper $i$ according to
+reviewer $j$. It reflects how a specific reviewer's opinion differs
+from other reviewers. These differences in opinion may be arising due
+to differing expertise or perspective.
+
+The model contains $n$ + $m$ + $n\hat{k}$ parameters where $n=1,678$
+is the number of papers, $m=1,474$ is the number of reviewers and
+$\hat{k}$ is the average number of reviewers per paper. Given that the
+data consists of $n\hat{k}$ reviewing scores, the model is
+over-parameterised. The original Platt-Burges model used
+regularisation to deal with this parameterisation, both
+\cite{Ge-bayesian15} and we deal with extra
+parameters by allocating them a probability distribution. We use a Gaussian probability resulting in a latent
+variable model that has a marginal likelihood which is jointly
+Gaussian, so we have
+$$
+\mathbf{y} \sim N(\mu \mathbf{1}, \mathbf{K}),
+$$
+where $\mathbf{y}$ is a vector of stacked scores $\mathbf{1}$ is
+the vector of ones and the elements of the covariance function are given
+by
+$$
+k(i,j; k,l) = \delta_{i,k} \alpha_f + \delta_{j,l} \alpha_b + \delta_{i, k}\delta_{j,l} \sigma^2,
+$$ where $i$ and $j$ are the index of one paper and reviewer and $k$
+and $l$ are the index of a potentially different paper and
+reviewer. Three of the parameters of this distribution, $\alpha_f$,
+$\alpha_b$, $\sigma^2$ represent the explained variance of the the
+score coming from objective quality rating, reviewer offset and
+subjective quality rating respectively. As described in the appendix,
+the calibrated reviewer score is estimated as the conditional density
+of $f_i + \epsilon_{i,j}$. Note that the calibrated reviewer score
+\emph{includes} the reviewer's \emph{subjective} opinion about the
+paper. See Appendix~\ref{app:reviewer-calibration} for more details
+on the model. The parameters of the fitted model are given in
+Table \ref{table-fitted-calibration-parameters}.
+
+\begin{table}[htb]
+  \label{table-fitted-calibration-parameters}
+  \caption{Fitted parameters of the calibration model. The parameters
+    are very well-determined as the model is based on around 6,000
+    reviewer scores. Once the individual reviewer offset,
+    $\alpha_b=0.24$, is removed, the calibrated score $f_i = 1.28$
+    plus $\epsilon_{i,j}=1.27$ is made up approximately of subjective
+    and objective assessment in roughly equal proportion.}
+  \begin{center}
+  \begin{tabular}{ccc}
+    $\alpha_f$ & $\alpha _b$ & $\sigma^2$ \\ \hline
+    1.28 & 0.24 & 1.27
+  \end{tabular}
+  \end{center}
+\end{table}  
+
+Under the model assumptions we see that calibrated review scores are
+made up of subjective and objective opinion in roughly equal
+proportions. In other words, 50\% of a typical reviewer's score is
+coming from opinion that is particular to that reviewer and \emph{not}
+shared with the other reviewers. This figure may seem large, but in
+retrospect it is perhaps not surprising. Papers are judged by
+subjective criteria such as novelty as well as more objective criteria
+such as rigour. The subjectivity of reviewer scores also seems a
+sensible starting point to  uncover the inconsistency between the two
+committees described by the NeurIPS experiment. 
+
+The result is consistent with the correlation coefficient we computed
+between the two independent committees, $\rho = 0.55 \pm 0.065$. Our
+calibration model is suggesting that the overall correlation between
+two committees would be given by $0.502 = 1.28/(1.28+1.27)$.
+
+\section{Simulation of Subjective Scoring}\label{sec:simulation-of-subjective-scoring}
+
+To check whether this subjective scoring also explains the
+inconsistency in acceptance decisions between the two committees, we set up a
+simple simulation study. For our simulations, we assumed that each
+paper was scored according to the model we've given above and we
+estimated the accept consistency through averaging across 100,000
+samples. In Figure~\ref{figure-consistency-vs-accept-rate} we show the
+estimates of the accept consistency as a function of conference accept
+rate. For three reviewers and 50\% subjectivity, the simulation
+suggests that we should expect an accept consistency of around
+63\%. This is higher than the accept consistency that we observed, but
+it falls within the bounds of statistical error suggested e.g.\ by a
+Bayesian analysis of the data (see Appendix~\ref{bayesian-analysis}). Conceptually, the large error comes because
+although experimental sample size overall is a relatively healthy count of 166,
+the low accept rate of typically 23\% for the conference means that the number of
+samples when exploring consistency across the two committees is around
+40. This leads to a standard error of our
+estimate\footnote{Consider Committee 1 with $n=43$ accepts. Of these
+  21 are rejected by committee 2. Our estimate of the probability of
+  inconsistency is given by $p=21/43$ with a standard error of
+  $\sqrt{\frac{p(1-p)}{n}} = 0.076$.} of around 8\%.  Of course, the
+simulation model also oversimplifies the complexity of the final
+decision process, which involved detailed discussion of each papers
+between reviewers authors and program committee members. This
+simplification may be introducing some optimistic bias in the
+simulation's estimate of the final accept precision. But it seems that
+our model simulation model is a plausible starting point for exploring
+the expected consistency of a given reviewing set up.
+
+\begin{figure}[htb]
+\includegraphics[width=0.90\columnwidth]{diagrams/neurips/accept-precision-vs-accept-rate.pdf}
+
+\caption{Plot of the accept rate versus the accept consistency of the
+  conference for 50\% subjectivity in a simulation of the conference
+  with different numbers of reviewers per paper.}
+\label{figure-consistency-vs-accept-rate}
+\end{figure}
+
+The simple simulation we describe suggests that a major source of
+inconsistency in the conference can be traced back to subjectivity in
+the reviews. Combination of the calibration model and our simulation
+suggests an accept precision for the conference of around 63\%. This
+is consistent with the upper end of consistency estimates: analysis in Appendix~\ref{uncertainty-accept-rate}
+suggests that the accept precision was was between 38\% and 64\%. This highlights the
+unreliability of the accept precision statistic. The statistical power
+is low because the number of samples used in its calculation is given
+by accept rate $\times$ experiment sample size.
+
+\subsection{Consistency and Correctness}
+
+It seems self-evident that we are looking for greater consistency between review
+committees. After all, if decisions are inconsistent, then how can
+they be `correct'? While it's true that inconsistency implies
+incorrectness, the converse is not true. Consistency does not imply
+correctness. For example, if both committees were to choose papers to
+accept based on how many references they include, then their decisions
+would be consistent, but not correct. Given that we know that
+\emph{incorrect} decisions will be made, then we can also phrase the
+question in another way. Given that there will be errors, do we prefer
+errors which will be consistently made? When there are errors,
+variation in decision making may be a good thing: it could prevent a
+particular type of paper being consistently discriminated against.
+
+We've established that there is inconsistency in the peer review
+process, and we have associated that inconsistency with subjective
+scoring by reviewers. But we have also warned against over emphasis on
+consistency as an aim for a reviewing process. Consistency is only a
+good thing if the decisions can also be shown to be correct. So, a
+follow up question would seem to be: how good is the committee at
+selecting the `right' papers? Unfortunately we don't have a ground
+truth assessment of what the right papers are. But, because time has
+passed between the conference and today, we can explore what happened
+to accepted papers in terms of their citation impact.
+
+\section{Impact of Accepted Papers}
+
+Seven years have passed since the NeurIPS experiment and the papers
+published at the conference have had time to establish themselves. In
+this section we explore how they fared in terms of their
+\emph{citation impact}.\footnote{Citation counts certainly have flaws
+  when being used as a measure of impact of a paper. They do not
+  represent, e.g. adoption in industry, adoption for public policy and
+  public awareness/education. However, they do provide a quantitative
+  measure that allows us to analyse the impact of conference papers at
+  scale.}
+
+To determine the citation impact of papers, we searched for all
+accepted papers (not just the once in the experiment) from the conference on Semantic Scholar.\footnote{See
+  \url{https://www.semanticscholar.org/about}.}
+The Semantic Scholar ID of the papers was recorded and we made use of
+the Semantic Scholar API to retrieve the number of citing papers. The
+citation scores were transformed into the citation impact using a
+monotonic transformation as follows,
+$$
+\text{citation impact} = \log_{10} (1 + \text{number of citations}).
+$$
+This transformation eliminated the heavy tails of the distribution
+of citations, leading to a citation score distribution that is closer
+to a Gaussian, enabling us to make use of Pearson's $\rho$ for
+correlation measurement.
+
+We computed the correlation between the average calibrated quality
+score and the citation impact. There was \emph{no significant
+  correlation} between those scores. We show a scatter plot of the
+data in Figure~\ref{figure-citations-vs-average-calibrated-quality-accept}. In the
+scatter plot we have added differential privacy noise to the values
+ to obfuscate individual paper
+identities. Correlation coefficient is computed before adding the
+differential privacy noise (see Appendix~\ref{correlation-of-quality-scores-and-citation}).
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-accept.pdf}
+  \end{center}
+  \caption{Scatter plot of the citation impact (defined as
+    $\log_{10}(1+\text{citations})$) against the average calibrated
+    quality score for accepted NeurIPS 2014 papers. To prevent
+    reidentification of an individual paper's quality scores each
+    point is corrupted by differentially private noise in the plot
+    (correlation is computed before adding differentially private
+    noise). We have also purposely left off the scale, as the main
+    point in including the scatter plot is to show the general shape
+    of the points, validating our use of Pearson's correlation
+    coefficient, $\rho$. The sample size is 414 accepted papers which
+    gives us $\rho = 0.051 \pm 0.049$ indicating no significant
+    correlation.}
+  \label{figure-citations-vs-average-calibrated-quality-accept}
+\end{figure}
+
+The calibrated quality score is not specifically designed to measure
+impact, but it still may be surprising that there's no correlation
+between this score and citation impact for the group of accepted
+papers. The implication that the quality score, which is the main
+criterion on which accept/reject decisions are being made, is
+uninformative in determining the paper's eventual influence should
+give pause for thought.
+
+Does this mean that reviewers can't judge what papers are likely to be
+influential? Or is something else going on? In 2013 Welling and
+Ghahramani introduced a separate scoring indicator. 
+Perhaps the answer to our quandary in the quality
+scores lies in the phrasing of the question they introduced ((see also
+Appendix~\ref{app:review-details}).
+\begin{quote}
+  Independently of the Quality Score above, this is your opportunity to
+identify papers that are very different, original, or otherwise
+potentially impactful for the NIPS community.
+\end{quote}
+
+Here reviewers are being asked to judge the likely future impact of
+the paper. The score is a binary value, work is categorised as being
+either `potentially have a major impact' or `unlikely to have much
+impact'. Analysis of this score does show a statistically significant
+correlation with an accepted paper's citation impact (see Figure~\ref{figure-citations-vs-average-impact-accept}), but the magnitude of
+the effect is small.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-impact-accept.pdf}
+  \end{center}
+  \caption{Scatter plot of the citation impact (defined as
+    $\log_{10}(1+\text{citations})$) against the average impact score
+    for accepted NeurIPS 2014 papers. As in Figure~\ref{figure-citations-vs-average-calibrated-quality-accept}, data
+    is corrupted for plotting by differentially private noise. The
+    scatter plot is to show the general shape of the points,
+    validating our use of Pearson's correlation coefficient,
+    $\rho$. Correlation is $0.16 \pm 0.049$ giving a statistically
+    significant result.}
+  \label{figure-citations-vs-average-impact-accept}
+\end{figure}
+
+Also note that the correlation for this score across the duplicated
+papers in the NeurIPS experiment was relatively low:\footnote{Standard
+  error compute as $\sqrt{\frac{1-\rho^2}{n-2}}$.} $0.27 \pm 0.075$.
+
+Alongside quality and impact, reviewers are asked to provide a
+confidence score for their review. Scored on a Likert scale between 1
+(`the review is an educated guess') and 5 (`the reviewer is absolutely
+certain'). The confidence score helps Area Chairs decide how much
+weight to place on a particular review and whether new reviews may be
+needed for a particular paper. Appendix~\ref{confidence-score} gives a
+detailed description of the scale.
+
+The questions about reviewer confidence are entirely focused on how a
+given reviewer feels about a particular paper, so they reflect an
+individual reviewers expertise. But, interestingly, the confidence
+score is the most predictive of the paper's final impact. This implies
+that underlying the confidence score there is also a particular
+property of the paper being represented. Likely, reviewers are more
+confident about well written papers that clearly express the core
+ideas in the paper. The confidence score may be reflecting some
+underlying clarity of the paper. Such clarity is also likely to have a
+downstream effect on citation impact.
+
+\begin{figure}[htb]
+\includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-confidence-accept.pdf}
+
+\caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the
+  average confidence score for accepted papers. As in Figure~\ref{figure-citations-vs-average-calibrated-quality-accept}, data is
+  corrupted for plotting by differentially private noise. The scatter
+  plot is to show the general shape of the points, validating our use
+  of Pearson's correlation coefficient, $\rho$. Correlation is $0.25
+  \pm 0.048$ giving a statistically positive correlation between the
+  two values.}
+\label{figure-citations-vs-average-confidence-accept}
+\end{figure}
+
+More evidence for this notion of clarity comes from analysing the
+correlation of the confidence score across the two different
+committees in the NeurIPS experiment. Correlation of confidence scores
+was $0.39 \pm 0.072$, giving additional evidence for
+the influence of paper clarity in the reviewers' confidence about the paper.
+
+Conferences and journals are often measured and ranked by their impact
+factor. These impact factors are metrics that derive from citation
+counts of the papers presented in those outlets. But our long term
+analysis shows that at NeurIPS 2014, quality scores were uncorrelated
+with the final citation impact of the papers. This raises serious
+questions about our processes. For accepted papers, the reviewers' notion of quality is independent of the papers' final
+influence on the field. Indeed, reviewer instructions for the
+conference implied that should be the case, with a request for an
+additional impact score that is independent of the quality score.
+
+We were motivated to explore the relation between quality scores and
+citation counts in an effort to determine how `correct' the decisions
+were within the reviewing process. We have argued that if errors are
+being made, then we would be better off making such errors
+inconsistently, rather than always rejecting the papers for the same
+misconceptions about the role of the reviewing process. If we accept
+that final paper citation counts are some measure of paper quality,
+then we see that reviewers fail to capture this in their scores.
+
+Finally, reviewer confidence scores are being influenced by particular
+characteristics of the papers, what we might think of as the clarity
+of the paper. As a result, in our analysis, reviewer confidence turned
+out to be the best indicator of the paper's citation impact.
+
+We'll return to the implications of this analysis in the discussion,
+but before exploring further, we will turn our attention to the
+\emph{rejected} papers. Accepted papers, by their nature, are those
+that are scoring at the high end of the quality score. To explore the
+low end of the quality score, we turn to papers that were not
+presented at the conference.
+
+\section{Fate of Rejected Papers}
+
+Of the 1,678 papers submitted to NeurIPS 2014, only 414 were presented
+at the final conference. In the previous section we have shown that
+the reviewer-assessed quality of these papers gave no indication of
+their final impact on the community as measured by citation
+counts. But what about the rejected papers?
+
+To trace the fate of the rejected papers, we searched Semantic Scholar
+for evidence of all 1,264 rejected papers. We looked for papers with
+similar titles and where the NeurIPS submission's contact author was
+also in the author list. We were able to track down 680 papers. Of
+these 177 were only found on arXiv, 76 were found as PDFs online
+without a publication venue and 427 were published in other
+venues. The outlets that received ten or more papers from this group
+were AAAI (72 papers), AISTATS (57 papers), ICML (33 papers), CVPR (17
+papers), Later NeurIPS (15 papers), JMLR (14 papers), IJCAI (14
+papers), ICLR (13 papers), UAI (11 papers).  Opinion about quality of
+these different outlets will vary from individual, but from our
+perspective all of these outlets are `top-tier' for machine learning
+and related areas. Other papers appeared at less prestigious outlets, and citation scores were also recored for papers that remained available only on ArXiv.  Note that there is likely a bias towards outlets
+that have a submission deadline shortly after NeurIPS decisions are
+public, e.g.\ submission deadline for AAAI 2015 was six days after
+NeurIPS decisions were sent to authors. AISTATS has a submission
+deadline one month after. A Sankey diagram showing where papers
+submitted to the conference ended up is shown in Figure~\ref{figure-where-do-neurips-papers-go}.
+
+\begin{figure}[htb]
+\includegraphics[width=0.9\columnwidth]{diagrams/neurips/where-do-neurips-papers-go.pdf}
+
+\caption{Sankey diagram showing the flow of NeurIPS papers through the system from submission to eventual publication.}
+\label{figure-where-do-neurips-papers-go}
+\end{figure}
+
+For each paper we found we used the Semantic Scholar ID to recover the
+citation count for the paper. This allowed us to measure the
+correlation between the rejected papers' quality scores and their
+eventual citation impact. The scatter plot is shown in Figure~\ref{figure-citations-vs-average-calibrated-quality-reject}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=\columnwidth]{diagrams/neurips/citations-vs-average-calibrated-quality-reject.pdf}
+\end{center}
+\caption{Scatter plot of $\log_{10}(1+\text{citations})$ against the
+  average calibrated quality score for rejected papers. To prevent
+  reidentification of individual papers quality scores and citation
+  count, each point is corrupted by differentially private noise in
+  the plot (correlation is computed before adding differentially
+  private noise). Correlation is $0.22 \pm 0.038$. }
+\label{figure-citations-vs-average-calibrated-quality-reject}
+\end{figure}
+
+The results show weak correlation between the rejected paper's quality
+scores and their citation impact. It seems that for rejected papers the reviewing body's quality scores do have some correlation with  lower citation impact. 
+
+\section{Conclusions}
+
+In this paper we have revisited the 2014 NeurIPS Experiment. The
+experiment investigated the consistency of peer review by randomly
+selecting 10\% of the papers submitted to the conference and having
+them reviewed by two separate committees. The experiment found that
+(roughly) 25\% of decisions were inconsistent between the two
+committees. Reaction to the experiment in the community focused on a
+statistic we call the accept precision. This statistic represents the
+percentage of presented papers that would have been the same through
+an independently rerun version of the same reviewing process. Our analysis has shown this statistic to be
+unreliable, where a headline figure of 50\% has been presented, the  Bayesian analysis in Appendix~\ref{bayesian-analysis} suggests that the actual figure is somewhere between 38\% and 62\%.
+
+By revisiting the conference calibration process, we explored the
+effect of subjective reviewer opinion on the accept consistency. The
+calibration process suggested that around 50\% of the variance in
+reviewer scores is associated with subjective opinion. We built a
+simple simulation that used this figure in reviewer scoring, this
+simulation suggested that when each paper has three reviewers, if the
+underlying subjectivity is 50\%, we expect an accept precision of
+62\%. The simulation showed that we can improve this consistency with
+more reviewers, but there are diminishing returns as the number of
+reviewers increase.
+
+Having reviewed the consistency of the conference, we then emphasised
+that consistency does not mean correctness. It is easy to have a
+conference where the decisions between two independent committees
+would be consistent but arbitrary. For example, a conference where papers
+were accepted on the basis of the number of references they made. We
+therefore explored the extent to which the reviewer quality scores are
+predictive of eventual paper impact.
+
+By determining the number of citations for each accepted paper, we
+were able to demonstrate that there is no correlation between reviewer
+quality scores for accepted papers and the papers' eventual citation
+impact. Given that papers were accepted on the basis of their quality
+scores, this raises questions as to what the objective of the
+reviewing process is. Welling and Ghahramani had introduced a new
+impact score for the 2013 conference that we
+continued to use. This score did have some correlation with the
+eventual citation impact although the largest correlation arose from
+examining reviewer confidence. We speculated that this may be to do
+with an underlying element of clarity in the papers that gives
+reviewers confidence and makes papers more likely to be cited.
+
+Finally, we followed up the fate of papers that were rejected from the
+conference. We found that a very significant portion of rejected
+papers are published very soon after the NeurIPS conference in other
+high quality venues. We found that there was weak correlation between rejected papers' citation impact and their quality scores, suggesting that
+reviewers are better at judging which papers are weak, in terms of
+citation impact, than they are at judging which papers are strong.
+
+In summary, we suggest a significant overhaul of the scoring process
+of machine learning conferences. It is clear that reviewers are
+picking up on at least three different components for a paper. There
+is a notion of `quality', that in its upper range seems to be
+independent of citation impact. There is a notion of `impact' that is
+only weakly correlated with the measured citation impact, and we
+speculate that there is also a notion of clarity: reviewers were more
+confident about papers that later turned out to have a high citation
+impact.
+
+The notion of `quality' for the NeurIPS conference may be conflating
+separate ideas. In particular, reviewer instructions indicate that
+rigour is also a component of the quality score. If this is the case
+then it may explain some of the inconsistency between
+reviewers. Subjective opinion in scoring is likely to be arising
+between the different weightings different reviewers may be placing on
+these factors. For future conferences, we suggest that these scores
+are separated out to improve consistency between reviewers. For
+example reviewers could be asked to score across clarity, rigour,
+significance and originality. Final rankings could then be determined
+through some combination of these scores that would be agreed at
+program committee level, rather than at the whim of individual
+reviewers.
+
+\subsubsection*{Acknowledgements}
+
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{revisiting-the-neurips-experiment}
+\onecolumn
+\aistatstitle{Supplementary Material for Inconsistency in Peer Review}
+\appendix
+\input{the-neurips-experiment.include}
+\end{document}
