@@ -143,9 +143,8 @@ really falls with area chairs, and the responsibility for matching area chairs
 to papers falls with the program chairs. But we can perform a preliminary
 allocation with scripts based on similarity scores. [This notebook](http://nbviewer.ipython.org/github/lawrennd/nips2014/blob/master/notebooks/Paper%20Allocation.ipynb) attempts to allocate papers to area chairs and reviewers.
 
-I also wrote a [blog post](http://inverseprobability.com/2014/06/28/paper-
-allocation-for-nips/) on the paper allocation as performed with Corinna for NIPS
-2014 which has more information.
+I also wrote a [blog post](http://inverseprobability.com/2014/06/28/paper-allocation-for-nips/) 
+on the paper allocation as performed with Corinna for NIPS 2014 which has more information.
 
 ### Notifying Reviewers of Paper Reallocation
 
