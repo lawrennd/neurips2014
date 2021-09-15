@@ -5,10 +5,14 @@
 
 #### Updated May 2021 with pip installable cmtutils library
 
+#### Updated July 2021 as pip installable libary.
+
 As well as pandas and the standard numpy/scipy stack, the library has a dependency on the `cmtutils` module.
 
+The notebooks can also be installed locally with pip install.
+
 ```
-pip install git+https://github.com/lawrennd/cmtutils.git
+pip install git+https://github.com/lawrennd/neurips2014.git
 ```
 
 In 2014 [Corinna Cortes](http://research.google.com/pubs/author121.html) and I
