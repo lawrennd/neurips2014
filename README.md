@@ -5,7 +5,7 @@
 
 #### Updated June 2021 with the retropsective analysis of the NeurIPS Experiment
 
-In June 2021 Neil gave a talk at the Computer Lab which showed a retrospective analysis of the papers in the 2014 conference, tracking what their citations were, and also tracking the fate of rejected papers. The notebook for tracking the citations of papers is [here](https://github.com/lawrennd/neurips2014/blob/master/notebooks/Measuring%20Impact%20of%20Papers%20Using%20Semantic%20Scholar.ipynb), and the notebook for tracking the final destination of rejected papers is [here]().
+In June 2021 Neil gave a talk at the Computer Lab which showed a retrospective analysis of the papers in the 2014 conference, tracking what their citations were, and also tracking the fate of rejected papers. The notebook for tracking the citations of papers is [here](https://github.com/lawrennd/neurips2014/blob/master/notebooks/Measuring%20Impact%20of%20Papers%20Using%20Semantic%20Scholar.ipynb), and the notebook for tracking the final destination of rejected papers is [here](https://github.com/lawrennd/neurips2014/blob/master/notebooks/where-do-rejected-papers-go.ipynb).
 
 #### Updated May 2021 with pip installable cmtutils library
 
