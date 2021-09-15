@@ -3,7 +3,7 @@
 
 ### 28th October 2014 Neil D. Lawrence
 
-### Updated September 2021 with missing notebooks for retrospective analysis.
+#### Updated September 2021 with missing notebooks for retrospective analysis.
 
 The notebook for tracking the final destination of rejected papers is [here](https://github.com/lawrennd/neurips2014/blob/master/notebooks/where-do-rejected-papers-go.ipynb). The notebook for simulating the conference with 50% subjectivity is [here](https://github.com/lawrennd/neurips2014/blob/master/notebooks/neurips-simulation.ipynb).
 
