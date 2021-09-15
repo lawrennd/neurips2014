@@ -1,11 +1,11 @@
 \documentclass[twoside]{article}
 
-\usepackage{aistats2021}
+%\usepackage{aistats2021}
 % If your paper is accepted, change the options for the package
 % aistats2021 as follows:
 %
 %\usepackage[accepted]{aistats2021}
-%
+\usepackage{authblk}
 % This option will print headings for the title of your paper and
 % headings for the authors names, plus a copyright note at the end of
 % the first column of the first page.
@@ -34,7 +34,15 @@
 % If you use BibTeX in apalike style, activate the following line:
 %\bibliographystyle{apalike}
 
+\title{Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment}
+
+\author[$\dagger$]{Neil D. Lawrence}
+\author[$\star$]{Corinna Cortes}
+\affil[$\dagger$]{Computer Lab, University of Cambridge}
+\affil[$\star$]{Google Research, New York}
 \begin{document}
+
+\maketitle
 
 % If your paper is accepted and the title of your paper is very long,
 % the style will print as headings an error message. Use the following
@@ -50,13 +58,13 @@
 %
 %\runningauthor{Surname 1, Surname 2, Surname 3, ...., Surname n}
 
-\twocolumn[
-\aistatstitle{Inconsistency in Conference Peer Review: 
-
-Revisiting the 2014 NeurIPS Experiment}
-\aistatsauthor{Neil D. Lawrence \And Corinna Cortes}
-\aistatsaddress{University of Cambridge \And  Google Research, New York}
-]
+%\twocolumn[
+%\aistatstitle{Inconsistency in Conference Peer %Review: 
+%
+%Revisiting the 2014 NeurIPS Experiment}
+%\aistatsauthor{Neil D. Lawrence \And Corinna Cortes}
+%\aistatsaddress{University of Cambridge \And  Google %Research, New York}
+%]
 
 \begin{abstract}
     In this paper we revisit the 2014 NeurIPS experiment that examined
@@ -83,8 +91,7 @@ researchers.
 The NeurIPS conference is one of the premier conferences in machine
 learning.  The papers presented at this conference have
 proven to be highly influential including breakthrough papers in
-supervised and unsupervised learning, structure prediction, etc.. They ,
-provide theoretical, algorithmical and experimental justification
+supervised and unsupervised learning, structure prediction, etc.. They provide theoretical, algorithmical and experimental justification
 for the proposed techniques. These ideas have gone on to have widespread
 societal impact.
 

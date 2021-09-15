@@ -1,6 +1,3 @@
-
-
-
 \section{Reviewer Process, Details}
 \label{app:review-details}
 
@@ -193,11 +190,18 @@ reviewer should comment on all of these, if possible:
   theoretical or pragmatic approach?
 \end{itemize}
 
+\section{Code and Data}
+
+All code for our experiments can be found on line in Jupyter notebooks, \url{https://github.com/lawrennd/neurips2014/} and an accompanying python package for dealing with the data \url{https://github.com/lawrennd/cmtutils/}, it can be installed with `pip install cmtutils`. Code was all originally written in Python 2, but is now updated for compatibility with Python 3.
+
+The repository has all the code used for managing the NeurIPS reviewing process in a set of different notebooks. The relevant notebooks for recreating the different experiments below are listed in each section.
+
+Unfortunately, the full data for recreating our analysis is not public, due to challenges around anonymizing reviewer identity and the identity of authors whose papers weren't accepted at the conference.
 
 \section{NeurIPS Experiment Results}
 \label{app:neurips-experiment-results}
 
-The results of the experiment are listed in Table~\ref{table-neurips-experiment-results} in the main body of the paper.
+The results of the experiment are listed in Table~\ref{table-neurips-experiment-results} in the main body of the paper. A Jupyter notebook for recreating this analysis can be found here \url{https://github.com/lawrennd/neurips2014/blob/master/notebooks/The%20NIPS%20Experiment.ipynb}.
 
 There are a few ways of summarising the numbers in this table as percent
 or probabilities. First, the inconsistency is the proportion of decisions
@@ -335,7 +339,7 @@ associated with them (see Appendix~\ref{uncertainty-accept-rate}).
 \label{app:reviewer-calibration}
 
 Calibration of reviewers is the process where different interpretations
-of the reviewing scale are addressed. Previous published models used for calibration include the model used in 2006 by John Platt \citep{Platt-calibration12} and the Bayesian variant used in 2013 by Welling and Ghahramani \cite{Ge-bayesian15}.
+of the reviewing scale are addressed. Previous published models used for calibration include the model used in 2006 by John Platt \citep{Platt-calibration12} and the Bayesian variant used in 2013 by Welling and Ghahramani \cite{Ge-bayesian15}. You can find the code recreating our calibration in this Jupyter notebook \url{https://github.com/lawrennd/neurips2014/blob/master/notebooks/Reviewer%20Calibration.ipynb}.
 
 At decision time for NeurIPS 2014, we didn't have access to the \cite{Ge-bayesian15} model and ended up proposing our own approach that turns out to also be a Bayesian interpretation of \cite{Platt-calibration12}. Our assumption is
 that the score from the \(j\)th reviewer for the \(i\)th paper is given
@@ -419,8 +423,8 @@ So, we propose to proceed as follows. Set the mean from the reviews
 reviewer offset and diversity. For each parameter choice, optimize to
 find \(\alpha_f\) and then evaluate the likelihood. Worst case this will
 require us inverting \(\hat{\mathbf{K}}\), but if the reviewer paper
-groups are disconnected, it can be done a lot quicker.  The full
-analysis is described in a blog post and accompanying Jupyter notebook.\footnote{\url{https://inverseprobability.com/2014/08/02/reviewer-calibration-for-nips}}.  The parameters of the fitted model are given in the main text in
+groups are disconnected, it can be done a lot quicker.  In practice, we composed the model as a Gaussian process and use of the GPy software for parameter fitting \citep{Gpy-2012}. The full
+analysis is described in a blog post.\footnote{\url{https://inverseprobability.com/2014/08/02/reviewer-calibration-for-nips}}.  The parameters of the fitted model are given in the main text in
 Table \ref{table-fitted-calibration-parameters}.
 
 
@@ -434,6 +438,8 @@ rate was around 23\%, but for the duplication committees the accept rate
 was around 25\%. If we assume decisions are made according to a binomial
 distribution, then is the accept rate for the duplicated papers too
 high?
+
+To reconstruct these examples or check for any errors in our code you can see our analysis in this Jupyter notebook: \url{https://github.com/lawrennd/neurips2014/blob/master/notebooks/The%20NIPS%20Experiment.ipynb}.
 
 Note that for all our accept probability statistics we used as a
 denominator the number of papers that were initially sent for review,
@@ -621,7 +627,7 @@ Conference reviews do not all come in at the requested time, the cumulative numb
 \end{figure}
 
 The Program Committee worked hard to ensure that all  papers had three reviews
-before the start of the rebuttal.  In Figure \ref{number-of-reviews-over-time}  we show the  overall statistics of what the count of reviewers per
+before the start of the rebuttal. In this section we explore differences between late submitted reviews and those submitted on time. Code for recreating this analysis is available in this Jupyter notebook: \url{https://github.com/lawrennd/neurips2014/blob/master/notebooks/NIPS%202014%20Late%20Review%20Observations.ipynb}.  In Figure \ref{number-of-reviews-over-time}  we show the  overall statistics of what the count of reviewers per
 paper were, we plot mean, maximum, median, and minimum over time. 
 
 \begin{figure}[htb]
@@ -808,6 +814,8 @@ assessment.
 Citation}\label{correlation-of-quality-scores-and-citation}
 
 To revisit the NeurIPS experiment, we traced the fate of accepted papers and all the rejected papers that we could find through searching on Semantic Scholar. This allowed us to associate each paper with a citation count. In this section we explore correlation between those citation counts and the scores that reviewers gave the papers back in 2014.
+
+Code that traces the fate of rejected papers (in terms of their final publication venue) can be found in this Jupyter notebook: \url{https://github.com/lawrennd/neurips2014/blob/master/notebooks/where-do-rejected-papers-go.ipynb} and code that computes the citation scores and compares them to quality scores can be found in this Jupyter notebook: \url{https://github.com/lawrennd/neurips2014/blob/master/notebooks/Measuring%20Impact%20of%20Papers%20Using%20Semantic%20Scholar.ipynb}.
 
 First of all, we plot the correlation between average quality score and the citation count for all papers where we could trace their fate (accepted and rejected). This is shown in  Figure~\ref{figure-citations-vs-average-calibrated-quality-all}. Rejected papers are given as crosses,
 accepted papers are given as dots. We include all papers, whether
