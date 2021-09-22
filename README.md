@@ -1,5 +1,5 @@
 
-# Managing Microsoft's Conference Management Toolkit with Python for NIPS 2014
+# Notebooks for Managing NeurIPS 2014 and Analyzing the NeurIPS Experiment
 
 ### 28th October 2014 Neil D. Lawrence
 
