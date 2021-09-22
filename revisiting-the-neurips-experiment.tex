@@ -463,7 +463,7 @@ this section we explore how they fared in terms of their
   scale.}
 
 To determine the citation impact of papers, we searched for all
-accepted papers (not just the once in the experiment) from the conference on Semantic Scholar.\footnote{See
+accepted papers (not just the ones in the experiment) from the conference on Semantic Scholar.\footnote{See
   \url{https://www.semanticscholar.org/about}.}
 The Semantic Scholar ID of the papers was recorded and we made use of
 the Semantic Scholar API to retrieve the number of citing papers. The
@@ -517,7 +517,7 @@ Does this mean that reviewers can't judge what papers are likely to be
 influential? Or is something else going on? In 2013 Welling and
 Ghahramani introduced a separate scoring indicator. 
 Perhaps the answer to our quandary in the quality
-scores lies in the phrasing of the question they introduced ((see also
+scores lies in the phrasing of the question they introduced (see also
 Appendix~\ref{app:review-details}).
 \begin{quote}
   Independently of the Quality Score above, this is your opportunity to
@@ -652,7 +652,7 @@ submitted to the conference ended up is shown in Figure~\ref{figure-where-do-neu
 \centering
 \includegraphics[width=0.5\textwidth]{diagrams/neurips/where-do-neurips-papers-go.pdf}
 
-\caption{Sankey diagram showing the flow of NeurIPS papers through the system from submission to eventual publication.}
+\caption{Sankey diagram showing the flow of NeurIPS papers through the system from submission to eventual publication. The node labelled /dev/null represents papers we were unable to trace on Semantic Scholar. Papers labelled `None' were papers that are available on line but where we could not trace a final publication venue (e.g. on researcher web pages). Other papers are labelled with a short name representing the publication venue. Many papers appear on ArXiv and then later in a publication venue. Those papers are not counted under the ArXiv label.  See the code at \url{https://github.com/lawrennd/neurips2014/blob/master/notebooks/where-do-rejected-papers-go.ipynb}.}
 \label{figure-where-do-neurips-papers-go}
 \end{figure}
 
